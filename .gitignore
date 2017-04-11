@@ -22,7 +22,7 @@ node_modules/
 tmp/
 temp/
 hooks/
-src/environments/
+src/environments/*.*
 !src/environments/env.example.ts
 platforms/
 plugins/
