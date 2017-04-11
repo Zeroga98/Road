@@ -1,0 +1,19 @@
+<ion-card class="card-md--mrgnone">
+    <img src="assets/img/menubg.jpg" />
+    <div class="card-title">Autocar</div>
+    <div class="card-subtitle">Renta tu carro</div>
+
+    <div class="card-footer">
+        <button *ngIf="!isAuthenticated" class="btn--bder-rigth wdth-47 btn--rad0 " (click)="Login()" menuClose ion-button color="light" clear>Iniciar sesión
+        </button>
+
+        <button *ngIf="!isAuthenticated" class="wdth-47 btn--rad0" (click)="SignUp()" menuClose ion-button color="light" clear>Crea una cuenta
+        </button>
+
+        <h1 *ngIf="isAuthenticated"> {{currentUser?.name}}</h1>
+
+        <button *ngIf="isAuthenticated" class="wdth-47 btn--rad0" (click)="Logout()" menuClose ion-button color="light" clear>Salir
+        </button>
+    </div>
+
+</ion-card>

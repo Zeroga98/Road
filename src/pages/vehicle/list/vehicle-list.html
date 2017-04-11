@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar color="red">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Vehículos</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <vehicle-item *ngFor="let vehicle of vehicles" 
+      [nombre]=vehicle.marca_nombre 
+      [img]=vehicle.foto 
+      [precio]=vehicle.precio_dia 
+      [sucursal]=vehicle.sucursal_nombre 
+      [combustible]=vehicle.combustible_nombre 
+      [modelo]=vehicle.modelo >
+   </vehicle-item>
+</ion-content>

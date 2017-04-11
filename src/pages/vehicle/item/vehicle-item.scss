@@ -1,0 +1,33 @@
+.ion-card-main {
+    position: relative;
+    text-align: center;
+}
+
+img {
+    -webkit-filter: brightness(60%);
+    filter: brightness(60%);
+}
+
+.card-nombre {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+}
+
+.card-precio {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+}
+.card-accessories{
+	position: absolute;
+	bottom: 0;
+	background-color: rgba(75,0,130,0.7);
+	width: 100%;
+	height: 15%;
+}
