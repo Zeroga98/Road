@@ -1,6 +1,6 @@
 page-signup {
     .signup-bkg {
-        background: linear-gradient(-45deg, rgba(178, 49, 40, 0.6), rgba(178, 49, 40, 0.2)), url(../../../assets/img/login.jpg) no-repeat center center fixed;
+        background: linear-gradient(-45deg, rgba(178, 49, 40, 0.8), rgba(178, 49, 40, 0.6)), url(../../../assets/img/Driving.png) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -9,7 +9,7 @@ page-signup {
     }
     .signup-logo {
         background-color: transparent;
-        width: 75%;
+        width: 95%;
         margin: 0 auto;
         text-align: center;
         & h2 {
@@ -18,18 +18,20 @@ page-signup {
             margin-top: -25%;
         }
         & img {
-            opacity: .6;
-            fill: red!important;
-            stroke: red!important;
+            opacity: .7;
+            filter: inherit;
         }
         & * {
             border: none!important;
         }
     }
     .signup-items {
-        color: whitesmoke;
+        color: white;
         & input::-webkit-input-placeholder {
-            color: whitesmoke;
+            color: white;
         }
+    }
+    .signup-align--right {
+        text-align: right;
     }
 }

@@ -1,9 +1,9 @@
 <ion-header>
-    <ion-navbar color="red">
+    <ion-navbar color="transparent">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Registro</ion-title>
+        <ion-title class="signup-align--right">Registro</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -16,25 +16,25 @@
             </ion-item>
         </ion-col>
     </ion-row>
-    <form (ngSubmit)="signUp()" #registerForm="ngForm">
+    <form (ngSubmit)="signUp()" #registerForm="ngForm" style="margin-top: -5%;">
         <ion-row>
             <ion-col>
                 <ion-list inset>
-                    <ion-item color="dark-bkg" class="signup-item">
+                    <ion-item color="transparent" class="signup-item">
                         <ion-input type="text" placeholder="Nombre" name="name" [(ngModel)]="User.name" required></ion-input>
                     </ion-item>
-                    <ion-item color="dark-bkg" class="signup-item">
+                    <ion-item color="transparent" class="signup-item">
                         <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="User.email" required></ion-input>
                     </ion-item>
-                    <ion-item color="dark-bkg" class="signup-item">
+                    <ion-item color="transparent" class="signup-item">
                         <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]="User.password" required></ion-input>
                     </ion-item>
                 </ion-list>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col class="signup-col">
-                <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Bienvenido</button>
+            <ion-col>
+                <button ion-button color="red" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Bienvenido</button>
             </ion-col>
         </ion-row>
     </form>
