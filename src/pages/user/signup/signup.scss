@@ -1,3 +1,35 @@
 page-signup {
-  
+    .signup-bkg {
+        background: linear-gradient(-45deg, rgba(178, 49, 40, 0.6), rgba(178, 49, 40, 0.2)), url(../../../assets/img/login.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: 0 center;
+    }
+    .signup-logo {
+        background-color: transparent;
+        width: 75%;
+        margin: 0 auto;
+        text-align: center;
+        & h2 {
+            color: white;
+            font-size: 2em;
+            margin-top: -25%;
+        }
+        & img {
+            opacity: .6;
+            fill: red!important;
+            stroke: red!important;
+        }
+        & * {
+            border: none!important;
+        }
+    }
+    .signup-items {
+        color: whitesmoke;
+        & input::-webkit-input-placeholder {
+            color: whitesmoke;
+        }
+    }
 }
