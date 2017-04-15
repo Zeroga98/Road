@@ -20,15 +20,7 @@ constructor(
 
   public signUp(){     
     this.showLoading()
-    this.authService.signUp(this.User).subscribe(response => {
-      if(response.token){
-        setTimeout(() => {
-        this.loading.dismiss();
-        this.nav.setRoot(ProfilePage)
-        });  
-      } else{
-          this.showError(response);
-      }    
+    this.authService.signUp(this.User).subscribe(response => {    
     },
     error => {
       this.showError(error);
