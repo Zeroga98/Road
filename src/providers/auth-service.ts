@@ -49,7 +49,17 @@ export class AuthService {
   }
 
   public signUp(User) {
-
+    return this.apiService.post('users', User)
+    .map(
+      data => {
+        if(data.token){
+          this.tokenService.saveToken(data.token);
+          this.setUserSesion();
+          return data;
+        } else {
+           return data[0].description;
+        }
+    })
   }
 
 /** Se obtiene el payload del token como un objeto de tipo usuario :(
