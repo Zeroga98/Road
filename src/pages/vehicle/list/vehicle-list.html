@@ -3,17 +3,24 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Vehículos</ion-title>
+        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Vehículos</ion-title>
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
+        </ion-searchbar>
+        <ion-buttons end>
+            <button ion-button color="light" (click)="btnSearch()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+            <button ion-button color="light" (click)="test('Reservar')">
+                <ion-icon name="ios-car"></ion-icon>
+            </button>
+            <button ion-button color="light" (click)="goToProfile()">
+                <ion-icon name="person"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <vehicle-item *ngFor="let vehicle of vehicles" 
-      [nombre]=vehicle.marca_nombre 
-      [img]=vehicle.foto 
-      [precio]=vehicle.precio_dia 
-      [sucursal]=vehicle.sucursal_nombre 
-      [combustible]=vehicle.combustible_nombre 
-      [modelo]=vehicle.modelo >
-   </vehicle-item>
+    <vehicle-item *ngFor="let vehicle of vehicles" [nombre]=vehicle.marca_nombre [img]=vehicle.foto [precio]=vehicle.precio_dia [sucursal]=vehicle.sucursal_nombre [combustible]=vehicle.combustible_nombre [modelo]=vehicle.modelo>
+    </vehicle-item>
 </ion-content>
