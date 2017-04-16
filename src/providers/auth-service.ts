@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   public signUp(User) {
-    return this.apiService.post('users', User)
+    return this.apiService.post('/user/signup', User)
     .map(
       data => {
         if(data.token){

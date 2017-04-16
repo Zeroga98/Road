@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="signup-bkg" padding>
-    <ion-row>
+    <ion-row style="margin-top: -35px;">
         <ion-col>
             <ion-item class="signup-logo">
                 <img src="assets/img/logo.svg" />
@@ -16,12 +16,15 @@
             </ion-item>
         </ion-col>
     </ion-row>
-    <form (ngSubmit)="signUp()" #registerForm="ngForm" style="margin-top: -5%;">
+    <form (ngSubmit)="signUp()" #registerForm="ngForm">
         <ion-row>
             <ion-col>
                 <ion-list inset>
                     <ion-item color="transparent" class="signup-item">
-                        <ion-input type="text" placeholder="Nombre" name="name" [(ngModel)]="User.name" required></ion-input>
+                        <ion-input type="text" placeholder="Nombres" name="name" [(ngModel)]="User.nombres" required></ion-input>
+                    </ion-item>
+                    <ion-item color="transparent" class="signup-item">
+                        <ion-input type="text" placeholder="Apellidos" name="lastname" [(ngModel)]="User.apellidos" required></ion-input>
                     </ion-item>
                     <ion-item color="transparent" class="signup-item">
                         <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="User.email" required></ion-input>

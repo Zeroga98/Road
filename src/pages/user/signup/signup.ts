@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { ProfilePage } from '../profile/profile';
+import { VehicleListPage } from '../../vehicle/list/vehicle-list';
 
 @Component({
   selector: 'page-signup',
@@ -9,7 +10,7 @@ import { ProfilePage } from '../profile/profile';
 })
 export class SignUpPage {
   loading: Loading;
-  User = {name: '', email: '', password: ''};
+  User = { empresa_id: 1, nombres: '', apellidos: '', email: '', password: ''};
 
 constructor(
   private nav: NavController, 
@@ -20,7 +21,16 @@ constructor(
 
   public signUp(){     
     this.showLoading()
-    this.authService.signUp(this.User).subscribe(response => {    
+    this.authService.signUp(this.User).subscribe(response => { 
+      if(response.token){
+        console.log(response); 
+        setTimeout(() => {
+          this.loading.dismiss();
+          this.nav.setRoot(VehicleListPage)
+        });  
+      } else{
+          this.showError(response);
+      }  
     },
     error => {
       this.showError(error);
