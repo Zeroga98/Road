@@ -25,11 +25,10 @@ export class ApiService {
    * */
   private setHeaders(): Headers {
     let headersConfig = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Content-Type': 'application/json'
     };
     if (this.tokenService.getToken()) {
-      headersConfig['Authorization'] = `Bearer ${this.tokenService.getToken()}`;
+      headersConfig['Authorization'] = `${this.tokenService.getToken()}`;
     }   
     return new Headers(headersConfig);
   }
