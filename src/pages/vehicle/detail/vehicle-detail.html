@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Vehículos</ion-title>
+        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Información</ion-title>
         <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
         </ion-searchbar>
         <ion-buttons end>
@@ -13,7 +13,7 @@
             <button ion-button color="light" (click)="test('Reservar')">
                 <ion-icon name="ios-car"></ion-icon>
             </button>
-            <button ion-button color="light" (click)="test('Profile')">
+            <button ion-button color="light" (click)="goToProfile()">
                 <ion-icon name="person"></ion-icon>
             </button>
         </ion-buttons>
@@ -21,17 +21,6 @@
 </ion-header>
 
 <ion-content>
-    <vehicle-item *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)"
-    [alquilado]=vehicle.alquilado 
-    [foto_url]=vehicle.foto_url
-    [precio_dia]=vehicle.precio_dia 
-    [sucursal]=vehicle.sucursal 
-    [tipo_combustible]=vehicle.tipo_combustible 
-    [modelo]=vehicle.auto_nombre
-    [vehiculo_id]=vehicle.vehiculo_id>
-    </vehicle-item>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+
 
 </ion-content>
