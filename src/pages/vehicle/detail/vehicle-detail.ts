@@ -17,10 +17,12 @@ export class VehicleDetailPage {
     private nav: NavController,
     public navParams: NavParams,
     private vehicleService: VehicleService
-  ) { }
+  ) { 
+    this.vehicle = this.navParams.get('vehicle');
+
+  }
 
   ionViewDidLoad() {
-    this.vehicle = this.navParams.get('vehicle');
     this.detail();
     console.log(this.vehicle);
   }
@@ -49,6 +51,7 @@ export class VehicleDetailPage {
         this.vehicle.sucursal_departamento = vehicle[0].sucursal_departamento;
         this.vehicle.sucursal_municipio = vehicle[0].sucursal_municipio;
         this.vehicle.tipo_direccion = vehicle[0].tipo_direccion;
+        
       },
       error => {
         console.log(error);

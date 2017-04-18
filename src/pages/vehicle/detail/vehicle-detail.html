@@ -4,7 +4,8 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Información</ion-title>
-        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on"
+            autocorrect="on">
         </ion-searchbar>
         <ion-buttons end>
             <button ion-button color="light" (click)="btnSearch()">
@@ -21,6 +22,51 @@
 </ion-header>
 
 <ion-content>
+    <ion-card>
+        <div class="vehicle-item__title">
+            <h2 class="title">{{vehicle.modelo}} {{vehicle.auto_nombre}}</h2>
+            <span class="subtitle">{{vehicle.puertas}} puertas | {{vehicle.puestos}} puestos</span>
+        </div>
+        <ion-slides>
+            <ion-slide>
+                <img src={{vehicle.foto_url}}>
+            </ion-slide>
+            <ion-slide *ngFor="let photos of vehicle.photos">
+                <img src={{photos}}>
+            </ion-slide>
+        </ion-slides>
+        <ion-fab class="favorite">
+            <button ion-fab (click)="favorite()">
+      <ion-icon [hidden]="favorito==1" name="star-outline"  ></ion-icon>
+      <ion-icon  [hidden]="favorito!=1" name="star"  ></ion-icon>
+    </button>
+        </ion-fab>
+        <ion-item>
+            <h2 class="description">{{vehicle.descripcion}}</h2>
+        </ion-item>
+        <ion-item>
+            <span item-left>CO${{vehicle.precio_dia}}</span>
+        </ion-item>
 
+    </ion-card>
+    <ion-card>
+        <div class="vehicle-item__title">
+            <h2 class="title">Caracteristicas del coche</h2>
+        </div>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    
+                    <ion-icon name="pin" item-left large></ion-icon>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="pin" item-left large></ion-icon>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+
+
+    </ion-card>
 
 </ion-content>
