@@ -24,5 +24,11 @@ export class VehicleItemComponent {
    @Input() vehiculo_id:number;
 
   constructor() {}
-
+  public favorite(){
+     if (this.favorito==null) {
+       this.favorito=1;
+     } else {
+       this.favorito=null;
+     }
+  }
 }

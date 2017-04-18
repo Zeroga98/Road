@@ -16,7 +16,7 @@ export class VehicleListPage {
   showSearchBar: boolean = false; 
   public extended: boolean = true;
   private offset: number = 0;
-  private limit: number = 2;
+  private limit: number = 3;
 
   constructor(
     private nav: NavController, 
@@ -61,6 +61,7 @@ export class VehicleListPage {
     if(this.extended){
       this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
         vehicles => {
+          console.log(vehicles);
           if(this.vehicles.length == 0){
             this.vehicles = vehicles;
           } else {

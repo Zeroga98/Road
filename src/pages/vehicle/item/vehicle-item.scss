@@ -1,3 +1,45 @@
+vehicle-item{
+    img{
+        width: 40%;
+        border-radius: 10px;
+        display: inline-block;
+        vertical-align: top;
+        margin: .5em;
+    }
+    .fab{
+        width: 30px;
+        height: 30px;
+    }
+    .favorite{
+        top: 16px;
+        right: 16px;
+    }
+    .card-md{
+        position: relative;
+    }
+    .label-md{
+        margin: 0;
+    }
+    h2{
+        display: inline-block;
+    }
+    .item-md{
+        color: #635c5c;
+    }
+    .vehicle-item__title{
+        width: 40%;
+        display: inline-block;
+        text-align: center;
+        margin-top: 1.5em;
+        .subtitle{
+            display: block;
+            font-size: 12px;
+        }
+    }
+
+}
+
+
 .ion-card-main {
     position: relative;
     text-align: center;
