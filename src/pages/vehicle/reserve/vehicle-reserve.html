@@ -21,37 +21,39 @@
 </ion-header>
 <ion-content padding>
     <div *ngIf="vehicle">
-        <h3>¿Planeas un viaje?</h3>
-        <h4>Permítenos llevarte a tu destino</h4>
+        <div class="mrg-title">
+            <h2>¿Planeas un viaje?</h2>
+            <h4>Permítenos llevarte a tu destino</h4>
+        </div>
         <ion-item>
-            <ion-label color="primary" fixed>Viajo desde</ion-label>
+            <ion-label fixed>Viajo desde</ion-label>
             <ion-input type="text" [readonly]="true" [value]="vehicle.sucursal + ' | ' + vehicle.sucursal_municipio"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label color="primary">Voy hacia el mismo sitio</ion-label>
+            <ion-label>Voy hacia el mismo sitio</ion-label>
             <ion-toggle [(ngModel)]="sameSite"></ion-toggle>
         </ion-item>
         <ion-item>
-            <ion-label color="primary">Viajo hacia</ion-label>
+            <ion-label>Viajo hacia</ion-label>
             <ion-select cancelText="Nah" okText="Ok!" [disabled]="sameSite" [(ngModel)]="branch_destiny">
                 <ion-option *ngFor="let branch of branchs; let i = index; trackBy: trackByFn" value="{{branch.id}}" [selected]="i==0">{{branch.name}} | {{branch.municipio}}</ion-option>
             </ion-select>
         </ion-item>
-    </div>
-    <div>
+        <ion-item-divider></ion-item-divider>
         <ion-item>
-            <ion-label color="primary">Viajo el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateIn" [min]="limitInitDate" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn)"></ion-datetime>
+            <ion-label>Viajo el</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateIn" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn)"></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label color="primary">Llego el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateOut" [min]="limitInitDate" smonthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"></ion-datetime>
+            <ion-label>Llego el</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateOut" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"></ion-datetime>
         </ion-item>
-
+        <ion-item-divider></ion-item-divider>
         <ion-item>
-            <ion-label color="primary">Necesito un conductor</ion-label>
+            <ion-label>Necesito un conductor</ion-label>
             <ion-toggle [(ngModel)]="driver"></ion-toggle>
         </ion-item>
+        <ion-item-divider></ion-item-divider>
     </div>
     <button ion-button full (click)="goConfirm(dateIn)">Rentar mi carro ahora</button>
 </ion-content>

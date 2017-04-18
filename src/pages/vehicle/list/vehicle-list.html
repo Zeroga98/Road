@@ -10,10 +10,7 @@
             <button ion-button color="light" (click)="btnSearch()">
                 <ion-icon name="search"></ion-icon>
             </button>
-            <button ion-button color="light" (click)="test('Reservar')">
-                <ion-icon name="ios-car"></ion-icon>
-            </button>
-            <button ion-button color="light" (click)="test('Profile')">
+            <button ion-button color="light" (click)="goToProfile()">
                 <ion-icon name="person"></ion-icon>
             </button>
         </ion-buttons>
@@ -21,23 +18,11 @@
 </ion-header>
 
 <ion-content>
-    <vehicle-item *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)"
-    [alquilado]=vehicle.alquilado 
-    [foto_url]=vehicle.foto_url
-    [precio_dia]=vehicle.precio_dia 
-    [sucursal]=vehicle.sucursal 
-    [sucursal_municipio]= vehicle.sucursal_municipio
-    [tipo_transmicion]= vehicle.tipo_transmicion
-    [tipo_combustible]=vehicle.tipo_combustible 
-    [modelo]=vehicle.modelo
-    [auto_nombre]= vehicle.auto_nombre
-    [puertas]= vehicle.puertas
-    [favorito]= vehicle.favorito
-    [puestos]= vehicle.puestos
-    [vehiculo_id]=vehicle.vehiculo_id>
+    <vehicle-item *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)" [alquilado]="vehicle.alquilado" [foto_url]="vehicle.foto_url" [precio_dia]="vehicle.precio_dia" [sucursal]="vehicle.sucursal" [sucursal_municipio]="vehicle.sucursal_municipio"
+        [tipo_transmicion]="vehicle.tipo_transmicion" [tipo_combustible]="vehicle.tipo_combustible" [modelo]="vehicle.modelo" [auto_nombre]="vehicle.auto_nombre" [puertas]="vehicle.puertas" [favorito]="vehicle.favorito" [puestos]="vehicle.puestos" [vehiculo_id]="vehicle.vehiculo_id">
     </vehicle-item>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

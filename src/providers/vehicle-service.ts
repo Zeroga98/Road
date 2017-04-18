@@ -43,4 +43,11 @@ export class VehicleService {
     })
   }
 
+  public reserveVehicle(reserve: any): Observable<any> {
+    return this.apiService.post('/reserve/pre', reserve)
+    .map(
+      data => {
+        return data;
+    })
+  }
 }

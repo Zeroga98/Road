@@ -34,7 +34,6 @@ export class VehicleReservePage {
 
   ionViewDidLoad() {
     this.vehicle = this.navParams.get('vehicle');
-    console.log(this.vehicle);
     this.getBranchs();
     this.getVehicleReserveDates();
   }
@@ -116,6 +115,6 @@ export class VehicleReservePage {
       sucursal_id: this.vehicle.sucursal_id + '',
       conductor: (this.driver ? '1' : '0')
     };
-    this.nav.push(ConfirmReservePage, { request: request })
+    this.nav.push(ConfirmReservePage, { request: request, vehicle: this.vehicle })
   }
 }
