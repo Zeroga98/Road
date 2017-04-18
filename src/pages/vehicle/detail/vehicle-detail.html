@@ -4,8 +4,7 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Información</ion-title>
-        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on"
-            autocorrect="on">
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
         </ion-searchbar>
         <ion-buttons end>
             <button ion-button color="light" (click)="btnSearch()">
@@ -59,7 +58,7 @@
         </ion-item>
         <ion-item color="secondary">
             <span item-left class="bold">CO$ {{vehicle.precio_dia}} <span class="price-description">por día</span> </span>
-            <button ion-button icon-right item item-right clear color="light" (click)="goToReserve()">Reservar  
+            <button ion-button icon-right item item-right clear color="light" (click)="goToReserve(vehicle)">Reservar  
                 <ion-icon name="arrow-forward"></ion-icon>
             </button>
         </ion-item>

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { VehicleListPage } from './list/vehicle-list';
 import { VehicleDetailPage } from './detail/vehicle-detail';
+import { VehicleReservePage } from './reserve/vehicle-reserve';
+import { ConfirmReservePage } from './confirm_reserve/confirm-reserve';
+
 
 import { VehicleItemComponent } from './item/vehicle-item';
 
@@ -10,12 +13,16 @@ import { VehicleItemComponent } from './item/vehicle-item';
   	declarations: [
     	VehicleListPage,
     	VehicleItemComponent,
-		VehicleDetailPage
+		VehicleDetailPage,
+		VehicleReservePage,
+		ConfirmReservePage
   	],
   	entryComponents: [
     	VehicleListPage,
     	VehicleItemComponent,
-		VehicleDetailPage
+		VehicleDetailPage,
+		VehicleReservePage,
+		ConfirmReservePage
   	]
 })
 export class VehicleModule {}

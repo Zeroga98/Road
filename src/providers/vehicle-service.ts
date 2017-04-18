@@ -26,5 +26,21 @@ export class VehicleService {
         return data;
     })
   }
+//Lista las sucursales disponibles
+   public getBranchs(): Observable<any> {
+    return this.apiService.get('/branch/all?empresa_id=1')
+    .map(
+      data => {
+        return data;
+    })
+  }
+//Lista las sucursales disponibles
+   public getVehicleReserveDates(vehicle_id: number): Observable<any> {
+    return this.apiService.get('/vehicle/reserve?vehicle_id=' + vehicle_id)
+    .map(
+      data => {
+        return data;
+    })
+  }
 
 }

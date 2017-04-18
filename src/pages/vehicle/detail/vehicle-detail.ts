@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { VehicleService } from '../../../providers/vehicle-service';
+import { VehicleReservePage } from '../reserve/vehicle-reserve';
 
 
 @Component({
@@ -26,10 +27,9 @@ export class VehicleDetailPage {
     this.detail();
     console.log(this.vehicle);
   }
-  public goToReserve() {
-    //this.nav.push(VehicleReservePage, { vehicle: vehicle })
-    console.log("to Reserve");
-}
+  public goToReserve(vehicle: any) {
+    this.nav.push(VehicleReservePage, { vehicle: vehicle })
+  }
 public favorite(){
   console.log("favorito!!");
 }
