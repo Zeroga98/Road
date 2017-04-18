@@ -26,7 +26,13 @@ export class VehicleDetailPage {
     this.detail();
     console.log(this.vehicle);
   }
-
+  public goToReserve() {
+    //this.nav.push(VehicleReservePage, { vehicle: vehicle })
+    console.log("to Reserve");
+}
+public favorite(){
+  console.log("favorito!!");
+}
   public detail() {
     this.vehicleService.getDetaild(this.vehicle.vehiculo_id).subscribe(
       vehicle => {
