@@ -9,11 +9,19 @@
 
         <button *ngIf="!isAuthenticated" class="wdth-47 btn--rad0" (click)="SignUp()" menuClose ion-button color="light" clear>Crea una cuenta
         </button>
-
-        <h1 *ngIf="isAuthenticated"> {{currentUser?.name}}</h1>
-
-        <button *ngIf="isAuthenticated" class="wdth-47 btn--rad0" (click)="Logout()" menuClose ion-button color="light" clear>Salir
+        <ion-item *ngIf="isAuthenticated">
+            <ion-avatar item-left>
+                <!--<img [src]="currentUser?.image"/>-->
+                <img src="http://visualoop.com/wp-content/themes/visualoop/img/there-is-no-picture-for-this-user2.png" />
+            </ion-avatar>
+            <h2 class="title">{{currentUser?.name}}</h2>
+            <p class="subtitle">{{currentUser?.email}}</p>
+        <button item-right *ngIf="isAuthenticated" class="wdth-47 btn--rad0" (click)="Logout()" menuClose ion-button icon-only clear >
+      <ion-icon  name="log-out" color="light"></ion-icon>
         </button>
+        </ion-item>
+
+       
     </div>
 
 </ion-card>

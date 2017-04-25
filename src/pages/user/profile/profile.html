@@ -17,33 +17,7 @@
             <p>{{currentUser?.email}}</p>
         </ion-item>
         <ion-card-content>
-            <ion-card>
-                <div class="vehicle-item__title">
-                    <h2>{{vehicle.vehiculo_modelo}} | <span class="bold"> {{vehicle.vehiculo_tipo}} </span></h2>
-                    <span class="subtitle">{{vehicle.sucursal_entrega}}</span>
-                </div>
-                <ion-slides>
-                    <ion-slide>
-                        <img src={{vehicle.foto}}>
-                    </ion-slide>
-                </ion-slides>
-                <ion-fab class="favorite">
-                    <button ion-fab (click)="favorite()">
-                <ion-icon [hidden]="favorito==1" name="star-outline"  ></ion-icon>
-                <ion-icon  [hidden]="favorito!=1" name="star"  ></ion-icon>
-            </button>
-                </ion-fab>
-                <ion-item color="secondary">
-                    Desde <span class="bold">{{vehicle.fecha_inicia_proceso}}</span> hasta <span class="bold">{{vehicle.fecha_fin_proceso}}</span>
-                </ion-item>
-                <ion-item color="secondary">
-                    <span item-left class="bold">CO$ {{vehicle.precio_dia}} <span class="price-description">por día</span> </span>
-                    <button ion-button icon-right item item-right clear color="light" (click)="goToReserve(vehicle)">Reservar  
-                <ion-icon name="arrow-forward"></ion-icon>
-            </button>
-                </ion-item>
-
-            </ion-card>
+        
         </ion-card-content>
         <ion-row>
             <ion-col>
