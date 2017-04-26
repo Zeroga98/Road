@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController,NavParams,AlertController, LoadingController, Loading} from 'ionic-angular';
-import { VehicleService } from '../../../providers/vehicle-service';
+import { NavController, NavParams } from 'ionic-angular';
+import { VehicleService } from '../../../services/vehicle-service';
 import { VehicleListPage } from '../list/vehicle-list';
+import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
   selector: 'page-confirm-reserve',
@@ -9,16 +10,15 @@ import { VehicleListPage } from '../list/vehicle-list';
 })
 export class ConfirmReservePage {
 
-  private loading: Loading;
+  private loading: any;
   public request: any = [];
   public vehicle: any = [];
 
   constructor(
     private nav: NavController, 
-     public navParams: NavParams,
-     public vehicleService :VehicleService,
-     private alertCtrl: AlertController, 
-      private loadingCtrl: LoadingController
+    public navParams: NavParams,
+    public vehicleService :VehicleService,
+    private util: UtilProvider
   ) {}
 
   ionViewDidLoad() {
@@ -27,35 +27,15 @@ export class ConfirmReservePage {
   }
 
   public confirm(){
-    this.showLoading();
+    this.loading = this.util.loading();
     this.vehicleService.reserveVehicle(this.request).subscribe(response => { 
       this.nav.setRoot(VehicleListPage);
-      this.showError('Solicitado', 'Te esperamos en nuestra sucursal.');
+      this.util.showError('Solicitado', 'Te esperamos en nuestra sucursal.');
+      this.loading.dismiss();
     },
     error => {
-      this.showError('Oops', 'No se pudo conectar con el servidor, verifica la conexión con internet.');
-    });
-  }
-
-  private showError(title, text) {
-    setTimeout(() => {
+      this.util.showError('Oops', this.util.strings.modal_error_connection);
       this.loading.dismiss();
     });
- 
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: ['OK']
-    });
-
-    alert.present(prompt);
   }
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Por favor espere...'
-    });
-    this.loading.present();
-  }
-  
 }

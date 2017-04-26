@@ -34,7 +34,7 @@ export class AuthService {
     }
   }
 
-  public login(credentials): Observable<User> {
+  public login(credentials): Observable<any> {
     return this.apiService.post('/user/login', credentials)
     .map(
       data => {

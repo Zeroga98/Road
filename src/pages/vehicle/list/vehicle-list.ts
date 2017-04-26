@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
-import { AuthService } from '../../../providers/auth-service';
-import { VehicleService } from '../../../providers/vehicle-service';
+import { AuthService } from '../../../services/auth-service';
+import { VehicleService } from '../../../services/vehicle-service';
 import { ProfilePage } from '../../user/profile/profile';
 import { VehicleDetailPage } from '../detail/vehicle-detail';
+import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
   selector: 'page-vehicleListPage',
@@ -23,6 +24,7 @@ export class VehicleListPage {
      public navParams: NavParams,
     private authService: AuthService,
     private vehicleService: VehicleService,
+    private util: UtilProvider
   ) {}
 
   ionViewDidLoad() {

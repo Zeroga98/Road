@@ -1,64 +1,40 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
-import { AuthService } from '../../../providers/auth-service';
+import { NavController } from 'ionic-angular';
+import { AuthService } from '../../../services/auth-service';
 import { ProfilePage } from '../profile/profile';
 import { VehicleListPage } from '../../vehicle/list/vehicle-list';
+import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
 export class SignUpPage {
-  loading: Loading;
+
+  private loading: any;
   User = { empresa_id: 1, nombres: '', apellidos: '', email: '', password: ''};
 
 constructor(
   private nav: NavController, 
-  private authService: AuthService,  
-  private alertCtrl: AlertController, 
-  private loadingCtrl: LoadingController
+  private authService: AuthService,
+  private util: UtilProvider
   ) {}
 
   public signUp(){     
-    this.showLoading()
+    this.loading = this.util.loading();
     this.authService.signUp(this.User).subscribe(response => { 
       if(response.token){
-        console.log(response); 
         setTimeout(() => {
-          this.loading.dismiss();
           this.nav.setRoot(VehicleListPage)
         });  
       } else{
-          this.showError(response);
-      }  
+          this.util.presentToast(response);
+      }
+      this.loading.dismiss();
     },
     error => {
-      this.showError(error);
-    });
-  }
- 
-  /** Esto debe trasladarse a una directiva */
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Por favor espere...'
-    });
-    this.loading.present();
-  }
-
- /** Esto debe trasladarse a un servicio */
-
-  showError(text) {
-    setTimeout(() => {
+      this.util.presentToast(this.util.strings.error_connection);
       this.loading.dismiss();
     });
- 
-    let alert = this.alertCtrl.create({
-      title: 'Error',
-      subTitle: text,
-      buttons: ['OK']
-    });
-
-    alert.present(prompt);
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { VehicleService } from '../../../providers/vehicle-service';
+import { VehicleService } from '../../../services/vehicle-service';
 import { VehicleReservePage } from '../reserve/vehicle-reserve';
 
 

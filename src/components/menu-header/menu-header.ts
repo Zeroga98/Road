@@ -3,7 +3,7 @@ import { App } from 'ionic-angular';
 
 import { LoginPage } from '../../pages/user/login/login';
 import { SignUpPage } from '../../pages/user/signup/signup';
-import { AuthService } from '../../providers/auth-service';
+import { AuthService } from '../../services/auth-service';
 
 import { User } from '../../models/user.model';
 

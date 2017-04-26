@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
-import { VehicleService } from '../../../providers/vehicle-service';
+import { NavController, NavParams } from 'ionic-angular';
+import { VehicleService } from '../../../services/vehicle-service';
 import { ProfilePage } from '../../user/profile/profile';
 import { ConfirmReservePage } from '../../vehicle/confirm_reserve/confirm-reserve';
+import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
   selector: 'page-reserve',
@@ -10,7 +11,7 @@ import { ConfirmReservePage } from '../../vehicle/confirm_reserve/confirm-reserv
 })
 export class VehicleReservePage {
 
-  loading: Loading;
+  private loading: any;
   search: string = "";
   showSearchBar: boolean = false;
   vehicle: any;
@@ -27,9 +28,7 @@ export class VehicleReservePage {
     public nav: NavController,
     public navParams: NavParams,
     private vehicleService: VehicleService,  
-    private alertCtrl: AlertController, 
-    private loadingCtrl: LoadingController
-
+    private util: UtilProvider
   ) {}
 
   ionViewDidLoad() {
@@ -39,28 +38,30 @@ export class VehicleReservePage {
   }
 
   private getBranchs() {
-    this.showLoading()
+    this.loading = this.util.loading();
     this.vehicleService.getBranchs().subscribe(response => {
       setTimeout(() => {
-        this.loading.dismiss();
         this.branchs = response;
         this.branch_destiny = this.branchs[0].id;
+        this.loading.dismiss();
       });        
     },
     error => {   
-        this.showError('Oops', 'No se pudo conectar con el servidor, verifica la conexión con internet.');
+        this.util.showError('Oops', this.util.strings.modal_error_connection);
+        this.loading.dismiss();
     });
   }
   private getVehicleReserveDates() {
-    this.showLoading()
+    this.loading = this.util.loading();
     this.vehicleService.getVehicleReserveDates(this.vehicle.vehiculo_id).subscribe(response => {
       setTimeout(() => {
-        this.loading.dismiss();
         this.reserveDates = response;
+        this.loading.dismiss();
       });  
     },
     error => {   
-        this.showError('Oops', 'No se pudo conectar con el servidor, verifica la conexión con internet.');
+        this.util.showError('Oops', this.util.strings.modal_error_connection);
+        this.loading.dismiss();
     });
   }
 
@@ -70,7 +71,7 @@ export class VehicleReservePage {
       let daIn: any = new Date(this.reserveDates[i].fecha_inicia_proceso);
       let daOut: any = new Date(this.reserveDates[i].fecha_final_proceso);
       if(da <= daOut && da >= daIn ){
-        this.showError('Lo sentimos', 'Este vehiculo ya esta reservado para esta fecha.');  
+        this.util.showError('Lo sentimos', 'Este vehiculo ya esta reservado para esta fecha.');  
         break;
       }
     }
@@ -84,26 +85,6 @@ export class VehicleReservePage {
     this.nav.push(ProfilePage)
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Por favor espere...'
-    });
-    this.loading.present();
-  }
-
-  private showError(title, text) {
-    setTimeout(() => {
-      this.loading.dismiss();
-    });
- 
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: ['OK']
-    });
-
-    alert.present(prompt);
-  }
 
   public goConfirm(){
     let request = 

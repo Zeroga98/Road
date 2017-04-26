@@ -13,13 +13,17 @@ import { MenuHeaderComponent } from '../components/menu-header/menu-header';
 import { UserModule } from '../pages/user/user.module';
 import { VehicleModule } from '../pages/vehicle/vehicle.module';
 
+/** Providers */
+import { UtilProvider } from '../providers/util-provider';
+import { StringsProvider } from '../providers/strings-provider';
+
 /** Servicios */
-import { ApiService } from '../providers/api-service';
-import { AuthService } from '../providers/auth-service';
-import { TokenService } from '../providers/token-service';
-import { VehicleService } from '../providers/vehicle-service';
-import { UserService } from '../providers/user-service';
-import { MenuService } from '../providers/menu-service';
+import { ApiService } from '../services/api-service';
+import { AuthService } from '../services/auth-service';
+import { TokenService } from '../services/token-service';
+import { VehicleService } from '../services/vehicle-service';
+import { UserService } from '../services/user-service';
+import { MenuService } from '../services/menu-service';
 
 
 @NgModule({
@@ -48,6 +52,8 @@ import { MenuService } from '../providers/menu-service';
     VehicleService,
     UserService,
     MenuService,
+    UtilProvider,
+    StringsProvider,
     { provide: ErrorHandler, 
       useClass: IonicErrorHandler
     }
