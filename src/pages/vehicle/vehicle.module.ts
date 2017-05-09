@@ -8,6 +8,9 @@ import { NotDataComponent } from '../../components/not-data/not-data';
 
 import { VehicleItemComponent } from './item/vehicle-item';
 
+import { HeaderComponent } from '../../components/header/header';
+
+
 @NgModule({
 	imports: [IonicPageModule],
   	declarations: [
@@ -16,8 +19,8 @@ import { VehicleItemComponent } from './item/vehicle-item';
 		VehicleDetailPage,
 		VehicleReservePage,
 		ConfirmReservePage,
-		NotDataComponent
-		
+		NotDataComponent,
+		HeaderComponent		
   	],
   	entryComponents: [
     	VehicleListPage,
@@ -25,8 +28,8 @@ import { VehicleItemComponent } from './item/vehicle-item';
 		VehicleDetailPage,
 		VehicleReservePage,
 		ConfirmReservePage,
-		NotDataComponent
-		
+		NotDataComponent,
+		HeaderComponent
   	]
 })
 export class VehicleModule {}
