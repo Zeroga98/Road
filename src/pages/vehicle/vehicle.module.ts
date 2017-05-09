@@ -5,8 +5,10 @@ import { VehicleDetailPage } from './detail/vehicle-detail';
 import { VehicleReservePage } from './reserve/vehicle-reserve';
 import { ConfirmReservePage } from './confirm_reserve/confirm-reserve';
 
-
 import { VehicleItemComponent } from './item/vehicle-item';
+
+import { HeaderComponent } from '../../components/header/header';
+
 
 @NgModule({
 	imports: [IonicPageModule],
@@ -15,14 +17,16 @@ import { VehicleItemComponent } from './item/vehicle-item';
     	VehicleItemComponent,
 		VehicleDetailPage,
 		VehicleReservePage,
-		ConfirmReservePage
+		ConfirmReservePage,
+		HeaderComponent		
   	],
   	entryComponents: [
     	VehicleListPage,
     	VehicleItemComponent,
 		VehicleDetailPage,
 		VehicleReservePage,
-		ConfirmReservePage
+		ConfirmReservePage,
+		HeaderComponent
   	]
 })
 export class VehicleModule {}
