@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 /** Componentes */
 import { Road } from './app.component';
 import { MenuHeaderComponent } from '../components/menu-header/menu-header';
+/*import { NotDataComponent } from '../components/not-data/not-data';*/
 
 /** Modulos */
 import { UserModule } from '../pages/user/user.module';
@@ -16,6 +17,7 @@ import { VehicleModule } from '../pages/vehicle/vehicle.module';
 /** Providers */
 import { UtilProvider } from '../providers/util-provider';
 import { StringsProvider } from '../providers/strings-provider';
+import { Network } from '@ionic-native/network';
 
 /** Servicios */
 import { ApiService } from '../services/api-service';
@@ -29,7 +31,8 @@ import { MenuService } from '../services/menu-service';
 @NgModule({
   declarations: [
     Road,
-    MenuHeaderComponent
+    MenuHeaderComponent,
+    /*NotDataComponent*/
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MenuService } from '../services/menu-service';
   bootstrap: [IonicApp],
   entryComponents: [
     Road,
-    MenuHeaderComponent
+    MenuHeaderComponent,
+    /*NotDataComponent*/
   ],
   providers: [
     StatusBar,
@@ -53,6 +57,7 @@ import { MenuService } from '../services/menu-service';
     UserService,
     MenuService,
     UtilProvider,
+    Network,
     StringsProvider,
     { provide: ErrorHandler, 
       useClass: IonicErrorHandler
