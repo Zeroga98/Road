@@ -49,7 +49,7 @@ export class MenuService {
   }
 
   private rolClient(){
-    this.pages.push({ title: 'Cliente 1', component: VehicleListPage, icon:'car', access: 'client' });
+    this.pages.push({ title: 'Mis reservas', component: VehicleListPage, icon:'ios-cart-outline', access: 'client' });
   }
 
   private rolAdmin(){
@@ -57,7 +57,9 @@ export class MenuService {
   }
 
   private rolProvider(){
-    this.pages.push({ title: 'Proveedor 1', component: VehicleListPage, icon:'car', access: 'provider' });
+    this.pages.push({ title: 'Historial de corte', component: VehicleListPage, icon:'ios-podium-outline', access: 'provider' },
+                    { title: 'Mis vehiculos', component: VehicleListPage, icon:'logo-buffer', access: 'provider' }
+                    );
   }
 
   private rolEmployee(){
