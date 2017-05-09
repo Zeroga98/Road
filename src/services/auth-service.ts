@@ -62,6 +62,10 @@ export class AuthService {
     })
   }
 
+  public setCurrentUser(user: User){
+    this.currentUserSubject.next(user);
+  }
+
 /** Se obtiene el payload del token como un objeto de tipo usuario :(
     se asigna como asunto al observable que propagará los datos del usuario actual
     se asigna verdadero como asunto al observable que propagará el estado de sesión
