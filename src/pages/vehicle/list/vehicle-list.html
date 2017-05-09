@@ -18,9 +18,13 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Delice para actualizar" refreshingSpinner="circles" refreshingText="Cargando..."></ion-refresher-content>
+  </ion-refresher>
     <vehicle-item *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)" [alquilado]="vehicle.alquilado" [foto_url]="vehicle.foto_url" [precio_dia]="vehicle.precio_dia" [sucursal]="vehicle.sucursal" [sucursal_municipio]="vehicle.sucursal_municipio"
         [tipo_transmicion]="vehicle.tipo_transmicion" [tipo_combustible]="vehicle.tipo_combustible" [modelo]="vehicle.modelo" [auto_nombre]="vehicle.auto_nombre" [puertas]="vehicle.puertas" [favorito]="vehicle.favorito" [puestos]="vehicle.puestos" [vehiculo_id]="vehicle.vehiculo_id">
     </vehicle-item>
+    <not-data [hidden]="not_data"></not-data>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
