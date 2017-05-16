@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="red">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Historial de corte</ion-title>
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
+        </ion-searchbar>    
+    </ion-navbar>
+</ion-header>
+<ion-content >
+     <ion-card>
+    <img src="http://contenidos.enter.co/custom/uploads/2015/10/pagos_1024.jpg"/>
+    <div class="card-title">Tus cuentas clarass</div>
+    <div class="card-subtitle">Recaudado mes anterior: $100.000</div>
+  </ion-card>
+ <ion-list>
+  <ion-item>
+    <span>Proximo Pago: </span>
+    <span class="date">22/05/2017</span>
+    <button ion-button outline item-right icon-left>
+     $200.000
+    </button>
+  </ion-item>
+  <ion-item>
+    Historial de pagos
+    <button ion-button outline item-right icon-left>      
+      Ver mas
+    </button>
+  </ion-item>
+  <ion-item>
+    Pagos por vehiculo
+  
+  </ion-item>
+</ion-list>
+</ion-content>

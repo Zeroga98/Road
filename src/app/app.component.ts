@@ -3,6 +3,7 @@ import { App, Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { VehicleListPage } from '../pages/vehicle/list/vehicle-list';
+import { MyReservationsPage } from '../pages/vehicle/my_reservations/my_reservations';
 import { MenuService } from '../services/menu-service';
 import { AuthService } from '../services/auth-service';
 import { UserService } from '../services/user-service';
