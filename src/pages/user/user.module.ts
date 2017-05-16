@@ -5,6 +5,8 @@ import { SignUpPage } from './signup/signup';
 import { ProfilePage } from './profile/profile';
 import { ListReservePage } from './list-reserve/list-reserve';
 import { CutoffDatePage } from './cutoff-date/cutoff-date';
+import { ContractDetailPage } from './contract-detail/contract-detail';
+
 
 
 @NgModule({
@@ -14,14 +16,16 @@ import { CutoffDatePage } from './cutoff-date/cutoff-date';
     	SignUpPage,
     	ProfilePage,
 		ListReservePage,
-		CutoffDatePage
+		CutoffDatePage,
+		ContractDetailPage
   	],
   	entryComponents: [
     	LoginPage,
     	SignUpPage,
     	ProfilePage,
 		ListReservePage,
-		CutoffDatePage
+		CutoffDatePage,
+		ContractDetailPage
   	]
 })
 export class UserModule {}
