@@ -27,6 +27,7 @@ import { TokenService } from '../services/token-service';
 import { VehicleService } from '../services/vehicle-service';
 import { UserService } from '../services/user-service';
 import { MenuService } from '../services/menu-service';
+import { ProviderService } from '../services/provider-service';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { MenuService } from '../services/menu-service';
     VehicleService,
     UserService,
     MenuService,
+    ProviderService,
     UtilProvider,
     Network,
     StringsProvider,

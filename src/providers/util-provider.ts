@@ -41,6 +41,7 @@ export class UtilProvider {
 		this.loader_cont--;		
 		if (this.loader_cont == 0) {
 			this.loader.dismiss();
+			this.loader = undefined;
 		}
 
 	};
