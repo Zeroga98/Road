@@ -7,6 +7,7 @@ import { VehicleListPage } from '../pages/vehicle/list/vehicle-list';
 import { MyReservationsPage } from '../pages/vehicle/my_reservations/my_reservations';
 import { ProfilePage } from '../pages/user/profile/profile';
 import { CutoffDatePage } from '../pages/provider/cutoff-date/cutoff-date';
+import { OwnCarsPage } from '../pages/vehicle/own-cars/own-cars';
 
 @Injectable()
 export class MenuService {
@@ -66,11 +67,10 @@ export class MenuService {
     );
   }
 
-  private rolProvider() {
-    this.pages.push(
-      { title: 'Historial de corte', component: CutoffDatePage, icon: 'ios-podium-outline', access: 'provider' },
-      { title: 'Mis vehiculos', component: VehicleListPage, icon: 'ios-folder-open-outline', access: 'provider' }
-    );
+  private rolProvider(){
+    this.pages.push({ title: 'Historial de corte', component: CutoffDatePage, icon:'ios-podium-outline', access: 'provider' },
+                    { title: 'Mis vehiculos', component: OwnCarsPage, icon:'logo-buffer', access: 'provider' }
+                    );
   }
 
   private rolEmployee() {

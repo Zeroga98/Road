@@ -1,0 +1,27 @@
+<!--
+  Generated template for the OwnCars page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header></header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Delice para actualizar" refreshingSpinner="circles" refreshingText="Cargando..."></ion-refresher-content>
+    </ion-refresher>
+    <div *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)">
+        <ion-card class="own-car-card">
+            <img src="{{vehicle.foto_url}}" alt="">
+            <div>
+                <h2>{{vehicle.modelo}}</h2> | <span>{{vehicle.auto_nombre}}</span>
+                <p>Contrato #: {{vehicle.vehiculo_id}}</p>
+                <p>Alquilado</p>
+            </div>
+        </ion-card>
+    </div>
+    <not-data [hidden]="not_data"></not-data>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -5,7 +5,9 @@ import { VehicleDetailPage } from './detail/vehicle-detail';
 import { VehicleReservePage } from './reserve/vehicle-reserve';
 import { ConfirmReservePage } from './confirm_reserve/confirm-reserve';
 import { MyReservationsPage } from './my_reservations/my_reservations';
+import { OwnCarsPage } from './own-cars/own-cars';
 import { NotDataComponent } from '../../components/not-data/not-data';
+
 
 import { VehicleItemComponent } from './item/vehicle-item';
 
@@ -21,6 +23,7 @@ import { HeaderComponent } from '../../components/header/header';
 		VehicleReservePage,
 		ConfirmReservePage,
 		MyReservationsPage,
+		OwnCarsPage,
 		NotDataComponent,
 		HeaderComponent		
   	],
@@ -31,6 +34,7 @@ import { HeaderComponent } from '../../components/header/header';
 		VehicleReservePage,
 		ConfirmReservePage,
 		MyReservationsPage,
+		OwnCarsPage,
 		NotDataComponent,				
 		HeaderComponent
   	]

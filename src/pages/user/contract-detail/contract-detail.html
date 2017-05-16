@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar color="red">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Finanzas</ion-title>
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
+        </ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item class="contract-select">
+            <ion-label>Contrato</ion-label>
+            <ion-select [(ngModel)]="Contratos" multiple="true" cancelText="Cancelar" okText="Ok!">
+                <ion-option value="1" selected="true">#1</ion-option>
+                <ion-option value="2">#2</ion-option>
+                <ion-option value="3">#3</ion-option>
+                <ion-option value="4">#4</ion-option>
+                <ion-option value="5">#5</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-list>
+            <ion-list-header>
+                Movimientos
+            </ion-list-header>
+            <ion-item>
+                <ion-icon name="cash" item-left></ion-icon>
+                <h2>Pago mensual</h2>
+                <p>2017/08/24</p>
+                <span item-right>$ 750000</span>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="logo-usd" item-left></ion-icon>
+                <h2>Mantenimiento</h2>
+                <p>2017/05/23</p>
+                <span item-right> - $ 5000</span>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="cash" item-left></ion-icon>
+                <h2>Liquidación contrato</h2>
+                <p>2017/08/25</p>
+                <span item-right>$33000</span>
+            </ion-item>
+        </ion-list>
+    </ion-list>
+</ion-content>
