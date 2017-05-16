@@ -13,6 +13,7 @@ import { MenuHeaderComponent } from '../components/menu-header/menu-header';
 /** Modulos */
 import { UserModule } from '../pages/user/user.module';
 import { VehicleModule } from '../pages/vehicle/vehicle.module';
+import { ProviderModule } from '../pages/provider/provider.module';
 
 /** Providers */
 import { UtilProvider } from '../providers/util-provider';
@@ -39,7 +40,8 @@ import { MenuService } from '../services/menu-service';
     IonicModule.forRoot(Road),
     HttpModule,
     UserModule,
-    VehicleModule
+    VehicleModule,
+    ProviderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

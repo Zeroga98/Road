@@ -72,7 +72,8 @@ export class VehicleListPage {
   public getVehicleAll() {
     if (this.extended) {
       this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
-        vehicles => {       
+        vehicles => {   
+          console.log(vehicles);   
           if (this.vehicles == undefined) {
             this.not_data = false;
           } else {
@@ -97,6 +98,7 @@ export class VehicleListPage {
       );
     }
   }
+  
 
   btnSearch() {
     this.showSearchBar = !this.showSearchBar;

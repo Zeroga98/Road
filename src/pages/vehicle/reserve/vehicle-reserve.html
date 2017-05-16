@@ -42,11 +42,11 @@
         <ion-item-divider></ion-item-divider>
         <ion-item>
             <ion-label>Viajo el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateIn" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn)"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY" min="2017-04-01" max="2020-10-31" [(ngModel)]="dateIn" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn)"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Llego el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="dateOut" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY"  min="2017-04-01" max="2020-10-31"  [(ngModel)]="dateOut" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"  (ionChange)="verifyDates(dateOut)"></ion-datetime>
         </ion-item>
         <ion-item-divider></ion-item-divider>
         <ion-item>
@@ -55,5 +55,5 @@
         </ion-item>
         <ion-item-divider></ion-item-divider>
     </div>
-    <button ion-button full (click)="goConfirm(dateIn)">Rentar mi carro ahora</button>
+    <button ion-button [disabled]="validate" full (click)="goConfirm(dateIn)">Rentar mi carro ahora</button>
 </ion-content>

@@ -6,9 +6,9 @@
     <span class="subtitle">{{puertas}} puertas | {{puestos}} puestos</span>
   </div>
   <ion-fab class="favorite">
-    <button ion-fab (click)="favorite()">
-      <ion-icon [hidden]="favorito==1" name="star-outline"  ></ion-icon>
-      <ion-icon  [hidden]="favorito!=1" name="star"  ></ion-icon>
+    <button ion-fab (click)="addVehicleFavorites()">
+      <ion-icon [hidden]="favorito!=null" name="star-outline"  ></ion-icon>
+      <ion-icon  [hidden]="favorito==null" name="star"  ></ion-icon>
     </button>
   </ion-fab>
 
@@ -26,7 +26,7 @@
 
   <ion-item>
     <span item-left>CO${{precio_dia}}</span>    
-    <button ion-button icon-left clear item-right>
+    <button ion-button icon-left clear item-right (click)="goToDetail()">
       <ion-icon name="navigate"></ion-icon>
       Mas
     </button>

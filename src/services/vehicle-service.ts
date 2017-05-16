@@ -19,8 +19,8 @@ export class VehicleService {
         return data;
     })
   }
-   public getDetaild(vehicle_id: number): Observable<any> {
-    return this.apiService.get('/vehicle/get?id=' + vehicle_id)
+   public getDetaild(vehicle_id: number, email: string): Observable<any> {
+    return this.apiService.get('/vehicle/get?id=' + vehicle_id + '&email='+email)
     .map(
       data => {
         return data;
@@ -37,6 +37,15 @@ export class VehicleService {
 //Lista las sucursales disponibles
    public getVehicleReserveDates(vehicle_id: number): Observable<any> {
     return this.apiService.get('/vehicle/reserve?vehicle_id=' + vehicle_id)
+    .map(
+      data => {
+        return data;
+    })
+  }
+
+  //Añadir vehiculo a favoritos
+   public addVehicleFavorites(vehicle_id: number): Observable<any> {
+    return this.apiService.post('/favorite/user-add', vehicle_id )
     .map(
       data => {
         return data;
