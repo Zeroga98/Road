@@ -33,7 +33,7 @@ export class VehicleDetailPage {
      this.authService.currentUser.subscribe((userData) => { 
       this.currentUser = userData
     })
-    console.log(this.vehicle);
+    console.log(this.status);
     
   }
 
@@ -74,7 +74,7 @@ public favorite(){
         this.vehicle.sucursal_departamento = vehicle[0].sucursal_departamento;
         this.vehicle.sucursal_municipio = vehicle[0].sucursal_municipio;
         this.vehicle.tipo_direccion = vehicle[0].tipo_direccion;
-        this.status= (this.vehicle.alquilado!=null) ? true: false ;
+        this.status= (this.vehicle.alquilado!=null) ? false: true ;
       },
       error => {
         console.log(error);

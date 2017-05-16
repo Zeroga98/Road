@@ -56,11 +56,11 @@
                 </ion-row>
             </ion-grid>
         </ion-item>
-        <ion-item  [color]="!status ? 'secondary' : 'danger'">
+        <ion-item *ngIf="status==undefined? false: true" [color]="status ? 'secondary' : 'danger'">
             <span item-left class="bold">CO$ {{vehicle.precio_dia}} <span class="price-description">por día</span> </span>
             <button ion-button icon-right item item-right clear color="light" (click)="goToReserve(vehicle)">
-                <span *ngIf="!status" >Reservar</span>  
-                <span *ngIf="status" >Ya lo reservaste</span>  
+                <span *ngIf="status" >Reservar</span>  
+                <span *ngIf="!status" >Ya lo reservaste</span>  
                 <ion-icon *ngIf="!status" name="arrow-forward"></ion-icon>
             </button>
         </ion-item>

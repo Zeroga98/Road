@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { ProviderService } from '../../../services/provider-service';
 import { UtilProvider } from '../../../providers/util-provider';
+import { ContractDetailPage } from '../../user/contract-detail/contract-detail'
 
 @Component({
 	selector: 'page-cutoff-date',
@@ -14,7 +16,9 @@ export class CutoffDatePage {
 
 	constructor(
 		public providerService: ProviderService,
-		public util: UtilProvider,
+    	private nav: NavController,
+    	public navParams: NavParams,
+		public util: UtilProvider
 	) {
 		this.getPayment('next', (data) => this.next_payment = data.proximo_pago);
 		this.getPayment('before', (data) => this.before_payment = parseInt(data.recaudado));
@@ -34,4 +38,7 @@ export class CutoffDatePage {
 				this.util.loadingDismiss();
 			});
 	}
+	  public goToDetail() {
+    this.nav.push(ContractDetailPage);
+  }
 }

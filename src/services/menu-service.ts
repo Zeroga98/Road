@@ -8,6 +8,7 @@ import { MyReservationsPage } from '../pages/vehicle/my_reservations/my_reservat
 import { ProfilePage } from '../pages/user/profile/profile';
 import { CutoffDatePage } from '../pages/provider/cutoff-date/cutoff-date';
 import { OwnCarsPage } from '../pages/vehicle/own-cars/own-cars';
+import { aboutPage } from '../pages/user/about/about';
 
 @Injectable()
 export class MenuService {
@@ -39,7 +40,7 @@ export class MenuService {
       }
     }
     this.pages.push(
-      {title:'Acerca de', component: MyReservationsPage, icon:'ios-information-circle-outline',access:'client'}
+      {title:'Acerca de', component: aboutPage, icon:'ios-information-circle-outline',access:'client'}
     );
   }
 
