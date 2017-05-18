@@ -1,3 +1,17 @@
 page-user-list {
-
+    .no-display {
+        display: none;
+    }
+    .select-btn {
+        width: 90%;
+        padding: 0;
+        padding-right: 5px;
+        max-width: 100%;
+    }
+    .pad-top-1em {
+        padding-top: 1.2em;
+    }
+    .brd-lft {
+        border-left: solid 1px lightgray;
+    }
 }

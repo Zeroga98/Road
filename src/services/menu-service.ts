@@ -11,7 +11,7 @@ import { OwnCarsPage } from '../pages/vehicle/own-cars/own-cars';
 import { aboutPage } from '../pages/user/about/about';
 import { RegisterCarPage } from '../pages/employee/register-car/register-car';
 import { UserListPage } from '../pages/admin/user-list/user-list';
-
+import { ReserveListPage } from '../pages/admin/reserve-list/reserve-list';
 
 @Injectable()
 export class MenuService {
@@ -68,7 +68,8 @@ export class MenuService {
     this.pages.push(
       { title: 'Usuarios', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' },
       { title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' },
-      { title: 'Lista de reservas', component: UserListPage, icon: 'ios-add-circle-outline', access: 'admin' }      
+      { title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' },
+      { title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' }                  
     );
   }
 
