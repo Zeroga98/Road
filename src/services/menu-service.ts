@@ -9,6 +9,8 @@ import { ProfilePage } from '../pages/user/profile/profile';
 import { CutoffDatePage } from '../pages/provider/cutoff-date/cutoff-date';
 import { OwnCarsPage } from '../pages/vehicle/own-cars/own-cars';
 import { aboutPage } from '../pages/user/about/about';
+import { RegisterCarPage } from '../pages/employee/register-car/register-car';
+
 
 @Injectable()
 export class MenuService {
@@ -64,20 +66,20 @@ export class MenuService {
   private rolAdmin() {
     this.pages.push(
       { title: 'Usuarios', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' },
-      { title: 'Registrar vehiculo', component: VehicleListPage, icon: 'ios-add-circle-outline', access: 'admin' }
+      { title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' }
     );
   }
 
   private rolProvider(){
     this.pages.push({ title: 'Historial de corte', component: CutoffDatePage, icon:'ios-podium-outline', access: 'provider' },
-                    { title: 'Mis vehiculos', component: OwnCarsPage, icon:'logo-buffer', access: 'provider' }
+                    { title: 'Mis vehículos', component: OwnCarsPage, icon:'logo-buffer', access: 'provider' }
                     );
   }
 
   private rolEmployee() {
     this.pages.push(
       { title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'employee' },
-      { title: 'Registrar vehiculo', component: VehicleListPage, icon: 'ios-add-circle-outline', access: 'employee' }
+      { title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'employee' }
     );
   }
 }

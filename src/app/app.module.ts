@@ -14,6 +14,8 @@ import { MenuHeaderComponent } from '../components/menu-header/menu-header';
 import { UserModule } from '../pages/user/user.module';
 import { VehicleModule } from '../pages/vehicle/vehicle.module';
 import { ProviderModule } from '../pages/provider/provider.module';
+import { EmployeeModule } from '../pages/employee/employee.module';
+import { AdminModule } from '../pages/admin/admin.module';
 
 /** Providers */
 import { UtilProvider } from '../providers/util-provider';
@@ -42,7 +44,9 @@ import { ProviderService } from '../services/provider-service';
     HttpModule,
     UserModule,
     VehicleModule,
-    ProviderModule
+    ProviderModule,
+    EmployeeModule,
+    AdminModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
