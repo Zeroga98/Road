@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../../services/auth-service';
 import { VehicleService } from '../../../services/vehicle-service';
-import { ProfilePage } from '../../user/profile/profile';
 import { VehicleDetailPage } from '../detail/vehicle-detail';
 import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
-  selector: 'my_reservations',
+  selector: 'page-myreservations',
   templateUrl: 'my_reservations.html'
 })
 
@@ -42,32 +41,7 @@ public vehicles: any = [];
 
 
 
-  doInfinite(infiniteScroll) {    
-    setTimeout(() => {
-      if (this.extended) {
-        this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
-          vehicles => {
-            if (this.vehicles.length == 0) {
-              this.vehicles = vehicles;
-            } else {
-              for (let i = 0; i < vehicles.length; i++) {
-                this.vehicles.push(vehicles[i]);
-              }
-            }
-            this.offset = this.idHigher(this.vehicles);
-            this.extended = (vehicles.length == this.limit);
-            console.log(this.vehicles);
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      }
-      
-      infiniteScroll.complete();
-    }, 1500);
-  }
-
+  
   public getVehicleAll() {
     if (this.extended) {
       this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
@@ -86,6 +60,7 @@ public vehicles: any = [];
           this.offset = this.idHigher(this.vehicles);
           this.extended = (vehicles.length == this.limit);
           this.not_data = true;
+          console.log(vehicles[0]);
         },
         error => {
           if (this.vehicles.length <= 0) {
@@ -97,17 +72,7 @@ public vehicles: any = [];
     }
   }
 
-  btnSearch() {
-    this.showSearchBar = !this.showSearchBar;
-  }
-
-  test(t) {
-    console.log(t);
-  }
-
-  public goToProfile() {
-    this.nav.push(ProfilePage)
-  }
+  
   public goToDetail(vehicle: any) {
     this.nav.push(VehicleDetailPage, { vehicle: vehicle })
   }
