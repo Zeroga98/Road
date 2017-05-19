@@ -4,6 +4,7 @@ import { ApiService } from './api-service';
 
 //Pages
 import { VehicleListPage } from '../pages/vehicle/list/vehicle-list';
+import { FavoritePage } from '../pages/vehicle/favorite/favorite';
 import { MyReservationsPage } from '../pages/vehicle/my_reservations/my_reservations';
 import { ProfilePage } from '../pages/user/profile/profile';
 import { CutoffDatePage } from '../pages/provider/cutoff-date/cutoff-date';
@@ -60,7 +61,8 @@ export class MenuService {
 
   private rolClient() {
     this.pages.push(
-      { title: 'Mis reservas', component: MyReservationsPage, icon: 'ios-cart-outline', access: 'client' }
+      { title: 'Mis reservas', component: MyReservationsPage, icon: 'ios-cart-outline', access: 'client' },
+      { title: 'Favoritos', component: FavoritePage, icon: 'star-outline', access: 'client' }
     );
   }
 
