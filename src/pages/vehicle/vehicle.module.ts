@@ -8,11 +8,9 @@ import { MyReservationsPage } from './my_reservations/my_reservations';
 import { OwnCarsPage } from './own-cars/own-cars';
 import { SelecDatePage } from './select_date/select_date';
 import { NotDataComponent } from '../../components/not-data/not-data';
-
+import { HeaderComponent } from '../../components/header/header';
 
 import { VehicleItemComponent } from './item/vehicle-item';
-
-import { HeaderComponent } from '../../components/header/header';
 
 
 @NgModule({
@@ -37,8 +35,8 @@ import { HeaderComponent } from '../../components/header/header';
 		ConfirmReservePage,
 		MyReservationsPage,
 		OwnCarsPage,
-		NotDataComponent,				
-		HeaderComponent,
+		NotDataComponent,	
+		HeaderComponent,			
 		SelecDatePage
   	]
 })

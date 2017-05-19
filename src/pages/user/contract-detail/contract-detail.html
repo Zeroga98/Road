@@ -22,51 +22,20 @@
                 <ion-option value="5">#5</ion-option>
             </ion-select>
         </ion-item>
-        <ion-list>
+        <ion-list *ngIf="payment != undefined && payment.length > 0">
             <ion-list-header>
                 Movimientos
             </ion-list-header>
             <ion-item>
                 <ion-icon name="cash" item-left></ion-icon>
                 <h2>Próximo pago</h2>
-                <p>2017/05/28</p>
-                <span item-right>$ 4500000</span>
+                <span item-right>{{payment[0].proximo_pago | currency:'USD':true:'1.0-2' }}</span>
             </ion-item>
-            <ion-item>
+            <ion-item *ngFor="let pay of payment" [hidden]="pay.pago == null">
                 <ion-icon name="cash" item-left></ion-icon>
                 <h2>Pago mensual</h2>
-                <p>2017/04/28</p>
-                <span item-right>$ 750000</span>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="logo-usd" item-left></ion-icon>
-                <h2>Mantenimiento</h2>
-                <p>2017/04/10</p>
-                <span item-right> - $ 50000</span>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="cash" item-left></ion-icon>
-                <h2>Pago mensual</h2>
-                <p>2017/04/28</p>
-                <span item-right>$ 750000</span>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="cash" item-left></ion-icon>
-                <h2>Pago mensual</h2>
-                <p>2017/03/28</p>
-                <span item-right>$ 750000</span>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="cash" item-left></ion-icon>
-                <h2>Pago mensual</h2>
-                <p>2017/02/28</p>
-                <span item-right>$ 750000</span>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="cash" item-left></ion-icon>
-                <h2>Liquidación contrato #3</h2>
-                <p>2017/01/28</p>
-                <span item-right>$ 1000000</span>
+                <p>{{pay.fecha_registro | date: 'dd/MM/yyyy'}}</p>
+                <span item-right>{{pay.pago | currency:'USD':true:'1.0-2'}}</span>
             </ion-item>
         </ion-list>
     </ion-list>

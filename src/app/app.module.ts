@@ -35,7 +35,7 @@ import { ProviderService } from '../services/provider-service';
 @NgModule({
   declarations: [
     Road,
-    MenuHeaderComponent,
+    MenuHeaderComponent
     /*NotDataComponent*/
   ],
   imports: [
@@ -51,7 +51,7 @@ import { ProviderService } from '../services/provider-service';
   bootstrap: [IonicApp],
   entryComponents: [
     Road,
-    MenuHeaderComponent,
+    MenuHeaderComponent
     /*NotDataComponent*/
   ],
   providers: [

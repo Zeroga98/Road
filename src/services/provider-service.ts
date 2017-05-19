@@ -18,4 +18,12 @@ export class ProviderService {
     })
   }
 
+  public getHistoryPayment(contract_id: string) {
+  	 return this.apiService.get('/paysheet/history-payment?contract_id=' + contract_id)
+    .map(
+      data => {
+        return data;
+    })
+  }
+
 }

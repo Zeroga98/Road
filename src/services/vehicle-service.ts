@@ -52,6 +52,14 @@ export class VehicleService {
     })
   }
 
+  public getVehiclesProvider(): Observable<any> {
+    return this.apiService.get('/provider/get-vehicles/')
+    .map(
+      data => {
+        return data;
+    })
+  }
+
   public reserveVehicle(reserve: any): Observable<any> {
     return this.apiService.post('/reserve/pre', reserve)
     .map(

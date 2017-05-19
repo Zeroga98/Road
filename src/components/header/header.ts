@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { App } from 'ionic-angular';
-import {NavController} from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ProfilePage } from '../../pages/user/profile/profile';
 
 
@@ -10,20 +10,20 @@ import { ProfilePage } from '../../pages/user/profile/profile';
 })
 export class HeaderComponent {
 
-  text: string;
-  search: string ="";
-  showSearchBar: boolean = false; 
+  @Input() title: any;
+  search: string = "";
+  showSearchBar: boolean = false;
 
   constructor(
     private nav: NavController,
-  ) { 
-    console.log('Hello Header Component');
-    this.text = 'Hello World';
+  ) {
   }
+
   public goToProfile() {
     this.nav.push(ProfilePage)
   }
-  btnSearch(){
+
+  btnSearch() {
     this.showSearchBar = !this.showSearchBar;
   }
 

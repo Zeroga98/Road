@@ -1,21 +1,14 @@
-<header></header>
-
+<header [title]="title"></header>
 <ion-content>
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Delice para actualizar" refreshingSpinner="circles" refreshingText="Cargando..."></ion-refresher-content>
-    </ion-refresher>
-    <div *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle)">
+    <div [hidden]="(vehicles == undefined || vehicles.length == 0)" *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle.contrato_id)">
         <ion-card class="own-car-card">
             <img src="{{vehicle.foto_url}}" alt="">
             <div>
                 <h2>{{vehicle.modelo}}</h2> | <span>{{vehicle.auto_nombre}}</span>
-                <p>Contrato #: {{vehicle.vehiculo_id}}</p>
-                <p>Alquilado</p>
+                <p>Contrato #: {{vehicle.contrato_id}}</p>
+                <p>{{(vehicle.estado == 3)? 'Alquilado': 'Disponible'}}</p>
             </div>
         </ion-card>
     </div>
-    <not-data [hidden]="not_data"></not-data>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    <not-data [hidden]="vehicles == undefined || vehicles.length > 0"></not-data>
 </ion-content>

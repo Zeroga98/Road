@@ -107,6 +107,7 @@ export class VehicleListPage {
 \*------------------------------------*/
   public getVehicleAll() {
     if (this.extended) {
+      this.util.loading();
       this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
         vehicles => {   
           console.log(vehicles);   
@@ -124,8 +125,11 @@ export class VehicleListPage {
           this.offset = this.idHigher(this.vehicles);
           this.extended = (vehicles.length == this.limit);
           this.not_data = true;
+          this.util.loadingDismiss();
         },
         error => {
+          this.util.showError('Oops', this.util.strings.modal_error_connection);
+          this.util.loadingDismiss();
           if (this.vehicles.length <= 0) {
             this.not_data = false;
           }
