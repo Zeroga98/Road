@@ -8,36 +8,36 @@
 </ion-header>
 
 <ion-content class="content_back">
-    <div class="my-reserve" *ngFor="let vehicle of vehicles">
+    <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
         <div class="my-reserve__header">
             <div class="text">
-                <span class="name">{{vehicle.marca_nombre}} {{vehicle.auto_nombre}}</span>
-                <span class="model">{{vehicle.modelo}}</span>
+                <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
+                <span class="model">{{reserve.modelo}}</span>
             </div>
             <div class="state">
-                <span>Confirmado</span>
+                <span>{{reserve.estado}}</span>
             </div>
         </div>
         <div class="my-reserve__content">
-            <h2 class="title">lun. 18 ene - mar. 19 ene 2017</h2>
+            <h2 class="title">{{reserve.fecha_inicia_proceso | date: 'dd/MM/yyyy'}} - {{reserve.fecha_final_proceso | date: 'dd/MM/yyyy'}}</h2>
             <div class="img">
-                <img src={{vehicle.foto_url}} alt="">
+                <img src={{reserve.foto}} alt="">
             </div>
             <div class="detail">
                 <div class="detail__title">
-                    <span class="subtitle">3 puertas | 4 puestos</span>
+                    <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
                 </div>
 
                 <ion-item>
                     <ion-icon name="pin" item-left large></ion-icon>
-                    <span>{{vehicle.sucursal}}</span>
-                    <p>{{ vehicle.sucursal_municipio}}</p>
+                    <span>{{reserve.sucursal}}</span>
+                    <p>{{ reserve.sucursal_municipio}}</p>
                 </ion-item>
 
                 <ion-item>
                     <ion-icon name="speedometer" item-left large></ion-icon>
-                    <span>Combustible: {{vehicle.tipo_combustible}}</span>
-                    <p>Transmición: {{vehicle.tipo_transmicion}}</p>
+                    <span>Combustible: {{reserve.tipo_combustible}}</span>
+                    <p>Transmición: {{reserve.tipo_transmicion}}</p>
                 </ion-item>
 
 
@@ -46,11 +46,11 @@
                 <button ion-button icon-left clear item-left >
               <ion-icon name="navigate"></ion-icon> Total
                 </button>
-                <span item-left>CO${{vehicle.precio_dia}}</span>
+                <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
             </ion-item>
         </div>
 
 
     </div>
-    <not-data [hidden]="not_data"></not-data>
+    <not-data [hidden]="reserves == undefined || reserves.length > 0"></not-data>
 </ion-content>

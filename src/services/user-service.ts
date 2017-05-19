@@ -18,4 +18,12 @@ export class UserService {
     })
   }
 
+  public getReserveClient(){
+  	return this.apiService.get('/reserve/get-reserve-client' )
+    .map(
+      data => {
+        return data;
+    })
+  }
+
 }
