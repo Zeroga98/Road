@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ReserveDetailPage } from '../reserve-detail/reserve-detail';
 
 
 @Component({
@@ -9,12 +10,15 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ReserveListPage {
 
   constructor(
-    public navCtrl: NavController,
+    public nav: NavController,
     public navParams: NavParams
   ) {  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveList');
+  }
+  public goToDetailReserve() {
+    this.nav.push(ReserveDetailPage)
   }
 
 }
