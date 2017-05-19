@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'res-detail',
+  selector: 'reserve-detail',
   templateUrl: 'reserve.html'
 })
 export class ReserveDetailPage {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ReserveDetailPage } from '../reserve-detail/reserve-detail';
+import { ReserveDetailPage } from '../../user/reserve-detail/reserve-detail';
 
 
 @Component({
