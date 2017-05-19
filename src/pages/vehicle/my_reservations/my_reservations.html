@@ -6,7 +6,6 @@
         <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Mis reservas</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content class="content_back">
     <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
         <div class="my-reserve__header">
@@ -27,30 +26,27 @@
                 <div class="detail__title">
                     <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
                 </div>
-
                 <ion-item>
                     <ion-icon name="pin" item-left large></ion-icon>
                     <span>{{reserve.sucursal}}</span>
-                    <p>{{ reserve.sucursal_municipio}}</p>
+                    <p>{{reserve.sucursal_municipio}}</p>
                 </ion-item>
-
                 <ion-item>
                     <ion-icon name="speedometer" item-left large></ion-icon>
                     <span>Combustible: {{reserve.tipo_combustible}}</span>
                     <p>Transmición: {{reserve.tipo_transmicion}}</p>
                 </ion-item>
-
-
             </div>
             <ion-item>
-                <button ion-button icon-left clear item-left >
-              <ion-icon name="navigate"></ion-icon> Total
+                <button ion-button icon-left clear item-left>
+                    Total
                 </button>
                 <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
+                <button ion-button icon-left clear item-right (click)="goToDetail(reserve)">
+                    <ion-icon name="navigate"></ion-icon> Ver más
+                </button>
             </ion-item>
         </div>
-
-
     </div>
     <not-data [hidden]="reserves == undefined || reserves.length > 0"></not-data>
 </ion-content>

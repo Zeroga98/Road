@@ -8,6 +8,7 @@ export class UtilProvider {
 	public strings: StringsProvider;
 	private loader: any = undefined;
 	private loader_cont: number=0;
+
 	constructor(
 		private alertCtrl: AlertController,
 		private loadingCtrl: LoadingController,
@@ -15,6 +16,16 @@ export class UtilProvider {
 		private stringsProvider: StringsProvider
 	) {
 		this.strings = stringsProvider;
+	}
+
+	public getRangeDays(date: string, date2: string){
+		let p_date: any = date.split("-");
+		let p_dat2: any = date2.split("-");
+		var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+		var firstDate = new Date(parseInt(p_date[0]), parseInt(p_date[1]), parseInt(p_date[2]));
+		var secondDate = new Date(parseInt(p_dat2[0]), parseInt(p_dat2[1]), parseInt(p_dat2[2]));
+
+		return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
 	}
 
 	public presentToast(message: string) {
@@ -43,7 +54,6 @@ export class UtilProvider {
 			this.loader.dismiss();
 			this.loader = undefined;
 		}
-
 	};
 
 	public showError(title: string, text: string) {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../../services/auth-service';
 import { UserService } from '../../../services/user-service';
-import { VehicleDetailPage } from '../detail/vehicle-detail';
+import { ReserveDetailPage } from '../../user/reserve-detail/reserve-detail';
 import { UtilProvider } from '../../../providers/util-provider';
 
 @Component({
@@ -44,5 +44,9 @@ export class MyReservationsPage {
         console.log(error);
       }
     );
+  }
+
+  public goToDetail(reserve: string){
+    this.nav.push(ReserveDetailPage, { reserve: reserve })
   }
 }

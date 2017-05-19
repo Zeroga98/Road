@@ -143,7 +143,7 @@ export class VehicleListPage {
     $NAV.PUSH
 \*------------------------------------*/
   public goToProfile() {
-    this.nav.push(ProfilePage)
+    this.nav.push(ProfilePage);
   }
   public goToDetail(vehicle: any) {
     this.nav.push(VehicleDetailPage, { vehicle: vehicle })
