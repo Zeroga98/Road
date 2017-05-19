@@ -52,6 +52,14 @@ export class VehicleService {
     })
   }
 
+  public getVehicleFavorites(): Observable<any> {
+    return this.apiService.get('/favorite/user-favorites/')
+    .map(
+      data => {
+        return data;
+    })
+  }
+
   public getVehiclesProvider(): Observable<any> {
     return this.apiService.get('/provider/get-vehicles/')
     .map(

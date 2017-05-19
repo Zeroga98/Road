@@ -6,57 +6,49 @@
         <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Favoritos</ion-title>
     </ion-navbar>
 </ion-header>
-
-<ion-content>
-    <ion-content class="content_back">
-        <div class="my-reserve" *ngFor="let reserve of vehicles" [hidden]="vehicles == undefined || vehicles.length == 0">
-            <div class="my-reserve__header">
-                <div class="text">
-                    <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
-                    <span class="model">{{reserve.modelo}}</span>
-                </div>
-                <ion-fab class="favorite">
-                    <button ion-fab (click)="addVehicleFavorites(reserve)">
-                        <ion-icon [hidden]="reserve.favorito!=null" name="star-outline"  ></ion-icon>
-                        <ion-icon  [hidden]="reserve.favorito==null" name="star"  ></ion-icon>
-                    </button>
-                </ion-fab>
+<ion-content class="content_back">
+    <div [hidden]="vehicles == undefined || vehicles.length == 0" class="my-reserve" *ngFor="let reserve of vehicles; let i = index " [hidden]="vehicles == undefined || vehicles.length == 0">
+        <div class="my-reserve__header">
+            <div class="text">
+                <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
+                <span class="model">{{reserve.modelo}}</span>
             </div>
-            <div class="my-reserve__content">
-                <div class="img">
-                    <img src={{reserve.foto_url}} alt="">
-                </div>
-                <div class="detail">
-                    <div class="detail__title">
-                        <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
-                    </div>
-                    <ion-item>
-                        <ion-icon name="pin" item-left large></ion-icon>
-                        <span>{{reserve.sucursal}}</span>
-                        <p>{{reserve.sucursal_municipio}}</p>
-                    </ion-item>
-                    <ion-item>
-                        <ion-icon name="speedometer" item-left large></ion-icon>
-                        <span>Combustible: {{reserve.tipo_combustible}}</span>
-                        <p>Transmición: {{reserve.tipo_transmicion}}</p>
-                    </ion-item>
+            <ion-fab class="favorite">
+                <button ion-fab (click)="removeFavorite(reserve, i)">
+                    <ion-icon name="star"></ion-icon>
+                </button>
+            </ion-fab>
+        </div>
+        <div class="my-reserve__content">
+            <div class="img">
+                <img src={{reserve.foto_url}} alt="">
+            </div>
+            <div class="detail">
+                <div class="detail__title">
+                    <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
                 </div>
                 <ion-item>
-                    <button ion-button icon-left clear item-left>
-                    Valor dia
-                </button>
-                    <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
-                    <button ion-button icon-left clear item-right (click)="goToDetail(reserve)">
-                    <ion-icon name="navigate"></ion-icon> Ver más
-                </button>
+                    <ion-icon name="pin" item-left large></ion-icon>
+                    <span>{{reserve.sucursal}}</span>
+                    <p>{{reserve.sucursal_municipio}}</p>
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="speedometer" item-left large></ion-icon>
+                    <span>Combustible: {{reserve.tipo_combustible}}</span>
+                    <p>Transmición: {{reserve.tipo_transmicion}}</p>
                 </ion-item>
             </div>
+            <ion-item>
+                <button ion-button icon-left clear item-left>
+                    Valor dia
+                </button>
+                <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
+                <button ion-button icon-left clear item-right (click)="goToDetail(reserve)">
+                    <ion-icon name="navigate"></ion-icon> Ver más
+                </button>
+            </ion-item>
         </div>
-        <not-data [hidden]="reserves == undefined || reserves.length > 0"></not-data>
-    </ion-content>
-    <!--    <vehicle-item *ngFor="let vehicle of vehicles"  [vehicle]="vehicle" [alquilado]="vehicle.alquilado" [foto_url]="vehicle.foto_url" [precio_dia]="vehicle.precio_dia" [sucursal]="vehicle.sucursal" [sucursal_municipio]="vehicle.sucursal_municipio"
-        [tipo_transmicion]="vehicle.tipo_transmicion" [tipo_combustible]="vehicle.tipo_combustible" [modelo]="vehicle.modelo" [auto_nombre]="vehicle.auto_nombre" [puertas]="vehicle.puertas" [favorito]="vehicle.favorito" [puestos]="vehicle.puestos" [vehiculo_id]="vehicle.vehiculo_id">
-    </vehicle-item>-->
-    <not-data [hidden]="not_data"></not-data>
-
+    </div>
+    <h1 [hidden]="vehicles == undefined || vehicles.length > 0"> No hay favoritos. </h1>
 </ion-content>
+

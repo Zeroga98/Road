@@ -15,13 +15,7 @@ import { SelecDatePage } from '../select_date/select_date';
 export class FavoritePage {
 
   public vehicles: any = [];
-  search: string = "";
-  showSearchBar: boolean = false;
-  public extended: boolean = true;
-  private offset: number = 0;
-  private limit: number = 3;
-  public not_data: boolean = true;
-  public favorito: number =null;
+  public favorito: number = null;
 
   constructor(
     private nav: NavController,
@@ -35,93 +29,58 @@ export class FavoritePage {
     this.getVehicleAll();
   }
 
-/*------------------------------------*\
+  /*------------------------------------*\
     $FUNTIONS
-\*------------------------------------*/
-  btnSearch() {
-    this.showSearchBar = !this.showSearchBar;
-  }
+  \*------------------------------------*/
 
-  private idHigher(array: any) {
-    let temp = -1;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].vehiculo_id > temp) {
-        temp = array[i].vehiculo_id;
-      }
-    }
-    return temp;
-  }
- public favorite() {
+  public favorite() {
     if (this.favorito == null) {
       this.favorito = 1;
     } else {
       this.favorito = null;
     }
   }
-  addVehicleFavorites(vehicle: any) {
-    let state: string = (this.favorito != null) ? "delete" : "add";
+
+  removeFavorite(vehicle: any, index: number) {
     let vehicle_id: any = {
       vehiculo_id: vehicle.vehiculo_id,
-      state: state
-    };    
+      state: "delete"
+    };
     this.vehicleService.addVehicleFavorites(vehicle_id).subscribe(
       response => {
-        vehicle.favorito=(vehicle_id.state=="add")? 1: null;
-        console.log(vehicle);
-        
+        this.vehicles.splice(index, 1);
         console.log(response);
       },
       error => {
         console.log(error);
       }
     );
-
   }
 
 
-/*------------------------------------*\
+  /*------------------------------------*\
     $PETITION
-\*------------------------------------*/
+  \*------------------------------------*/
   public getVehicleAll() {
-    if (this.extended) {
-      this.util.loading();
-      this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
-        vehicles => {   
-          console.log(vehicles);   
-          if (this.vehicles == undefined) {
-            this.not_data = false;
-          } else {
-            if (this.vehicles.length == 0) {
-              this.vehicles = vehicles;
-            } else {
-              for (let i = 0; i < vehicles.length; i++) {
-                this.vehicles.push(vehicles[i]);
-              }
-            }
-          }
-          this.offset = this.idHigher(this.vehicles);
-          this.extended = (vehicles.length == this.limit);
-          this.not_data = true;
-          this.util.loadingDismiss();
-        },
-        error => {
-          this.util.showError('Oops', this.util.strings.modal_error_connection);
-          this.util.loadingDismiss();
-          if (this.vehicles.length <= 0) {
-            this.not_data = false;
-          }
-          console.log(error);
-        }
-      );
-    }
+    this.util.loading();
+    this.vehicleService.getVehicleFavorites().subscribe(
+      vehicles => {
+        console.log(vehicles);
+        this.vehicles = vehicles
+        this.util.loadingDismiss();
+      },
+      error => {
+        this.util.showError('Oops', this.util.strings.modal_error_connection);
+        this.util.loadingDismiss();
+        console.log(error);
+      }
+    );
   }
-  
-/*------------------------------------*\
+
+  /*------------------------------------*\
     $NAV.PUSH
-\*------------------------------------*/
-  public goToProfile() {
-    this.nav.push(ProfilePage);
-  }
+  \*------------------------------------*/
+
   public goToDetail(vehicle: any) {
     this.nav.push(VehicleDetailPage, { vehicle: vehicle })
   }

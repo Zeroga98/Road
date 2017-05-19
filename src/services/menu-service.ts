@@ -44,7 +44,7 @@ export class MenuService {
       }
     }
     this.pages.push(
-      {title:'Acerca de', component: aboutPage, icon:'ios-information-circle-outline',access:'client'}
+      { title: 'Acerca de', component: aboutPage, icon: 'ios-information-circle-outline', access: 'client' }
     );
   }
 
@@ -60,25 +60,20 @@ export class MenuService {
   }
 
   private rolClient() {
-    this.pages.push(
-      { title: 'Mis reservas', component: MyReservationsPage, icon: 'ios-cart-outline', access: 'client' },
-      { title: 'Favoritos', component: FavoritePage, icon: 'star-outline', access: 'client' }
-    );
+    this.pages.push({ title: 'Mis reservas', component: MyReservationsPage, icon: 'ios-cart-outline', access: 'client' });
+    this.pages.push({ title: 'Favoritos', component: FavoritePage, icon: 'star-outline', access: 'client' });
   }
 
   private rolAdmin() {
-    this.pages.push(
-      { title: 'Usuarios', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' },
-      { title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' },
-      { title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' },
-      { title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' }                  
-    );
+    this.pages.push({ title: 'Usuarios', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' });
+    this.pages.push({ title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' });
+    this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' });
+    this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' });
   }
 
-  private rolProvider(){
-    this.pages.push({ title: 'Historial de corte', component: CutoffDatePage, icon:'ios-podium-outline', access: 'provider' },
-                    { title: 'Mis vehículos', component: OwnCarsPage, icon:'logo-buffer', access: 'provider' }
-                    );
+  private rolProvider() {
+    this.pages.push({ title: 'Contratos', component: CutoffDatePage, icon: 'ios-podium-outline', access: 'provider' });
+    this.pages.push({ title: 'Mis vehículos', component: OwnCarsPage, icon: 'logo-buffer', access: 'provider' });
   }
 
   private rolEmployee() {
