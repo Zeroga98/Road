@@ -20,9 +20,10 @@ export class VehicleReservePage {
   public branch_destiny: any;
   sameSite: boolean = false;
   public limitInitDate: any = new Date();
-  public dateOut: string = this.currentDate();
-  public dateIn: string = "2017-04-01";
-  public date: string = this.currentDate();
+ public dateOut: string =this.sumday(this.limitInitDate,2).toISOString().substring(0, 10);
+  public dateIn: string = this.limitInitDate.toISOString().substring(0, 10);  
+  public dateOutMin: string =this.sumday(this.limitInitDate,2).toISOString().substring(0, 10);
+  public dateInMin: string = this.limitInitDate.toISOString().substring(0, 10);  
   reserveDates: any;
   public validate: boolean;
 
@@ -31,8 +32,9 @@ export class VehicleReservePage {
     public navParams: NavParams,
     private vehicleService: VehicleService,
     private util: UtilProvider
-  ) {
-   
+  ) {  
+    console.log(this.dateOut);
+
 
   }
 
@@ -41,15 +43,19 @@ export class VehicleReservePage {
     this.getBranchs();
     this.getVehicleReserveDates();
   }
-  public currentDate() {
-    let day: string;
-    let month: string;
-    let year: string = this.limitInitDate.getFullYear();
-    day = (this.limitInitDate.getDate() < 10) ? '0' + this.limitInitDate.getDate() : this.limitInitDate.getDate();
-    month = (this.limitInitDate.getMonth() < 10) ? '0' + (this.limitInitDate.getMonth() + 1) : (this.limitInitDate.getMonth() + 1);
-    let date: string = year + '-' + month + '-' + day;
-    return date;
+  public sumday(date: Date, days: number) {
+    let result:Date = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
+   public sumdateout(date: string, days: number) {
+    let result:Date = new Date(date);
+    result.setDate(result.getDate() + days);
+    this.dateOutMin=(new Date(date) > new Date(this.dateOut))? result.toISOString().substring(0,10): this.dateOutMin;
+    this.dateOut= (new Date(date) > new Date(this.dateOut))? result.toISOString().substring(0,10): this.dateOutMin;
+     console.log(this.dateOutMin);
+  }
+
 
   private getBranchs() {
     this.loading = this.util.loading();
@@ -97,6 +103,7 @@ export class VehicleReservePage {
       }
     }
   }
+  
 
   btnSearch() {
     this.showSearchBar = !this.showSearchBar;
