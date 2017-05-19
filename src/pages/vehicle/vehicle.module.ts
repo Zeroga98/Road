@@ -6,6 +6,7 @@ import { VehicleReservePage } from './reserve/vehicle-reserve';
 import { ConfirmReservePage } from './confirm_reserve/confirm-reserve';
 import { MyReservationsPage } from './my_reservations/my_reservations';
 import { OwnCarsPage } from './own-cars/own-cars';
+import { SelecDatePage } from './select_date/select_date';
 import { NotDataComponent } from '../../components/not-data/not-data';
 
 
@@ -25,7 +26,8 @@ import { HeaderComponent } from '../../components/header/header';
 		MyReservationsPage,
 		OwnCarsPage,
 		NotDataComponent,
-		HeaderComponent		
+		HeaderComponent,
+		SelecDatePage	
   	],
   	entryComponents: [
     	VehicleListPage,
@@ -36,7 +38,8 @@ import { HeaderComponent } from '../../components/header/header';
 		MyReservationsPage,
 		OwnCarsPage,
 		NotDataComponent,				
-		HeaderComponent
+		HeaderComponent,
+		SelecDatePage
   	]
 })
 export class VehicleModule {}

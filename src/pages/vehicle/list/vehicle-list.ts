@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AuthService } from '../../../services/auth-service';
 import { VehicleService } from '../../../services/vehicle-service';
 import { ProfilePage } from '../../user/profile/profile';
 import { VehicleDetailPage } from '../detail/vehicle-detail';
 import { UtilProvider } from '../../../providers/util-provider';
+import { SelecDatePage } from '../select_date/select_date';
 
 
 @Component({
@@ -27,21 +28,53 @@ export class VehicleListPage {
     public navParams: NavParams,
     private authService: AuthService,
     private vehicleService: VehicleService,
-    private util: UtilProvider
+    private util: UtilProvider,
+    public modalCtrl: ModalController
   ) { }
 
   ionViewDidLoad() {
     this.getVehicleAll();
   }
 
+/*------------------------------------*\
+    $FUNTIONS
+\*------------------------------------*/
+  btnSearch() {
+    this.showSearchBar = !this.showSearchBar;
+  }
+
+  private idHigher(array: any) {
+    let temp = -1;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].vehiculo_id > temp) {
+        temp = array[i].vehiculo_id;
+      }
+    }
+    return temp;
+  }
+
+/*------------------------------------*\
+    $MODAL
+\*------------------------------------*/  
+
+ presentProfileModal() {
+   let profileModal = this.modalCtrl.create(SelecDatePage,{ params: '...' },{enableBackdropDismiss: true,showBackdrop:true});
+    profileModal.onDidDismiss(data => {
+     console.log(data);
+   });
+   profileModal.present();
+ }
+
+
+/*------------------------------------*\
+    $REFRESH
+\*------------------------------------*/
   doRefresh(refresher) {
     this.getVehicleAll();
     setTimeout(() => {      
       refresher.complete();
     }, 2000);
   }
-
-
 
   doInfinite(infiniteScroll) {    
     setTimeout(() => {
@@ -69,6 +102,9 @@ export class VehicleListPage {
     }, 1500);
   }
 
+/*------------------------------------*\
+    $PETITION
+\*------------------------------------*/
   public getVehicleAll() {
     if (this.extended) {
       this.vehicleService.getAll(1, this.limit, this.offset).subscribe(
@@ -99,15 +135,9 @@ export class VehicleListPage {
     }
   }
   
-
-  btnSearch() {
-    this.showSearchBar = !this.showSearchBar;
-  }
-
-  test(t) {
-    console.log(t);
-  }
-
+/*------------------------------------*\
+    $NAV.PUSH
+\*------------------------------------*/
   public goToProfile() {
     this.nav.push(ProfilePage)
   }
@@ -116,14 +146,4 @@ export class VehicleListPage {
   }
 
 
-
-  private idHigher(array: any) {
-    let temp = -1;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].vehiculo_id > temp) {
-        temp = array[i].vehiculo_id;
-      }
-    }
-    return temp;
-  }
 }
