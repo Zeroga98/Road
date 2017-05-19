@@ -1,6 +1,6 @@
 <header [title]="title"></header>
 <ion-content>
-    <div [hidden]="(vehicles == undefined || vehicles.length == 0)" *ngFor="let vehicle of vehicles" (click)="goToDetail(vehicle.contrato_id)">
+    <div [hidden]="(vehicles == undefined || vehicles.length == 0)" *ngFor="let vehicle of vehicles">
         <ion-card class="own-car-card">
             <img src="{{vehicle.foto_url}}" alt="">
             <div>

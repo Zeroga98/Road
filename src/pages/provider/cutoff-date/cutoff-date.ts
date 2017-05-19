@@ -10,9 +10,9 @@ import { ContractDetailPage } from '../../user/contract-detail/contract-detail'
 })
 export class CutoffDatePage {
 
-	private loading: any;
 	public next_payment: number = 0;
 	public before_payment: number = 0;
+	public contracts: any = undefined;
 
 	constructor(
 		public providerService: ProviderService,
@@ -20,12 +20,31 @@ export class CutoffDatePage {
     	public navParams: NavParams,
 		public util: UtilProvider
 	) {
-		this.getPayment('next', (data) => this.next_payment = data.proximo_pago);
+		this.getContracts();
+		//this.getPayment('next', (data) => this.next_payment = parseInt(data.proximo_pago));
 		this.getPayment('before', (data) => this.before_payment = parseInt(data.recaudado));
 	}
 
+	public getContracts(){
+		this.util.loading();
+		this.providerService.getContracts().subscribe(
+			response => {
+				this.contracts = [];
+				if(response != undefined && response.length > 0){
+					this.contracts = response;
+					console.log(this.contracts);
+				}
+				this.util.loadingDismiss();
+			},
+			error => {
+				this.contracts = [];
+				this.util.presentToast(this.util.strings.error_connection);
+				this.util.loadingDismiss();
+			});
+	}
+
 	public getPayment(state: string, callback: any) {
-		this.loading = this.util.loading();
+		this.util.loading();
 		this.providerService.getPayment(state).subscribe(
 			response => {
 				if(response != undefined && response.length > 0){
@@ -38,7 +57,8 @@ export class CutoffDatePage {
 				this.util.loadingDismiss();
 			});
 	}
-	  public goToDetail() {
-    this.nav.push(ContractDetailPage);
-  }
+
+	public goToDetail(contract_id: string) {
+    	this.nav.push(ContractDetailPage, { contract_id: contract_id });
+  	}
 }

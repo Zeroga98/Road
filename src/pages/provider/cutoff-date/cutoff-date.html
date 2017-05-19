@@ -12,21 +12,17 @@
     <ion-card>
         <img src="http://contenidos.enter.co/custom/uploads/2015/10/pagos_1024.jpg" />
         <div class="card-title">Tus cuentas claras</div>
-        <div class="card-subtitle">Recaudado mes anterior: $100.000</div>
+        <div class="card-subtitle">Recaudado mes anterior: {{before_payment | currency:'USD':true:'1.0-2'}}</div>
     </ion-card>
     <ion-card>
-        <ion-list>
-            <ion-item (click)="goToDetail()">
+        <ion-list *ngIf="contracts != undefined">
+            <ion-item (click)="goToDetail(contract.contrato_id)" *ngFor="let contract of contracts">
                 <ion-icon name="clipboard" item-left large></ion-icon>
-                <h2>Contrato #1</h2>
-                <p>2017-04-05 hasta 2017-04-05</p>
-                <ion-icon name="eye" item-right medium></ion-icon>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="clipboard" item-left large></ion-icon>
-                <h2>Contrato #2</h2>
-                <p>2017-04-05 hasta 2017-04-05</p>
-                <ion-icon name="eye" color="light" item-right medium></ion-icon>
+                <h2>Contrato #{{contract.contrato_id}}</h2>
+                <p>{{contract.tipo_contrato}}</p>
+                <p>Sueldo: {{contract.sueldo | currency:'USD':true:'1.0-2'}}</p>
+                <p>{{contract.fecha_inicio | date: 'dd/MM/yyyy'}} hasta {{contract.fecha_final | date: 'dd/MM/yyyy'}}</p>
+                <!--<ion-icon name="eye" item-right medium></ion-icon>-->
             </ion-item>
         </ion-list>
     </ion-card>

@@ -26,4 +26,12 @@ export class ProviderService {
     })
   }
 
+  public getContracts(){
+    return this.apiService.get('/provider/contracts')
+    .map(
+      data => {
+        return data;
+    })
+  }
+
 }
