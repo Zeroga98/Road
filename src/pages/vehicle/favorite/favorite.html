@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="content_back">
-    <div [hidden]="vehicles == undefined || vehicles.length == 0" class="my-reserve" *ngFor="let reserve of vehicles; let i = index " [hidden]="vehicles == undefined || vehicles.length == 0">
+    <div [hidden]="vehicles == undefined || vehicles.length == 0" class="my-reserve" *ngFor="let reserve of vehicles; let i = index">
         <div class="my-reserve__header">
             <div class="text">
                 <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
