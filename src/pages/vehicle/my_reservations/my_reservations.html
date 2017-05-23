@@ -3,12 +3,12 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Mis reservas</ion-title>
+        <ion-title *ngIf="index == 0" class="tracking-in-expand">Reservas activas</ion-title>
+        <ion-title *ngIf="index == 1" class="tracking-in-expand">Historial de reservas</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content class="content_back">
-    <!--(ionSlideDidChange)="slideChanged()"-->
-    <ion-slides class="pagemainclass" zoom="false">
+    <ion-slides class="pagemainclass" zoom="false" (ionSlideDidChange)="slideChanged($event)">
         <ion-slide>
             <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
                 <div class="my-reserve__header">

@@ -25,7 +25,7 @@ page-myreservations {
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;
-        margin-bottom: 30px!important;
+        
     }
 
     .pagemainclass {
@@ -71,7 +71,7 @@ page-myreservations {
     .my-reserve {
         background-color: #fff;
         padding: 10px;
-        margin: 0 0 0px 0;
+        margin: 0 0 10px 0;
         .my-reserve__header {
             border-bottom: 1px solid #e9edf1;
             height: 50px;

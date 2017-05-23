@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 import { AuthService } from '../../../services/auth-service';
 import { UserService } from '../../../services/user-service';
 import { ReserveDetailPage } from '../../user/reserve-detail/reserve-detail';
@@ -12,8 +12,10 @@ import { UtilProvider } from '../../../providers/util-provider';
 
 export class MyReservationsPage {
 
+  @ViewChild(Slides) slides: Slides;
   public reserves: any = undefined;
   public historys: any = undefined;
+  public index: number = 0;
 
   constructor(
     private nav: NavController,
@@ -58,5 +60,11 @@ export class MyReservationsPage {
 
   public goToDetail(reserve: string) {
     this.nav.push(ReserveDetailPage, { reserve: reserve })
+  }
+
+  public slideChanged(){
+    this.index = this.slides.getActiveIndex();
+    console.log(this.index);
+    //this.index = i;
   }
 }
