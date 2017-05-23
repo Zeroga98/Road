@@ -7,7 +7,7 @@ import { MenuService } from '../../../services/menu-service';
 import { UtilProvider } from '../../../providers/util-provider';
 import { SignUpPage } from '../signup/signup';
 import { VehicleListPage } from '../../vehicle/list/vehicle-list'; 
-import { VehicleReservePage } from '../../vehicle/reserve/vehicle-reserve';
+import { VehicleDetailPage } from '../../vehicle/detail/vehicle-detail';
 
 import { User } from '../../../models/user.model';
 
@@ -45,9 +45,10 @@ export class LoginPage {
       if(response.token){
         this.getUserProfile();
         setTimeout(() => {
+          //Proceso de reserva
           let vehicle = this.navParams.get('vehicle');
           if(vehicle){
-            this.nav.setRoot(VehicleReservePage, { vehicle: vehicle });
+            this.nav.push(VehicleDetailPage, { vehicle: vehicle });
           } else {
             this.nav.setRoot(VehicleListPage);
           }

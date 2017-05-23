@@ -61,7 +61,7 @@
             <button ion-button icon-right item item-right clear color="light" (click)="goToReserve(vehicle)">
                 <span *ngIf="status" >Reservar</span>  
                 <span *ngIf="!status" >Ya lo reservaste</span>  
-                <ion-icon *ngIf="!status" name="arrow-forward"></ion-icon>
+                <ion-icon *ngIf="status" name="arrow-forward"></ion-icon>
             </button>
         </ion-item>
 
