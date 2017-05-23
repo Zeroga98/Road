@@ -7,46 +7,95 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="content_back">
-    <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
-        <div class="my-reserve__header">
-            <div class="text">
-                <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
-                <span class="model">{{reserve.modelo}}</span>
-            </div>
-            <div class="state">
-                <span>{{reserve.estado}}</span>
-            </div>
-        </div>
-        <div class="my-reserve__content">
-            <h2 class="title">{{reserve.fecha_inicia_proceso | date: 'dd/MM/yyyy'}} - {{reserve.fecha_final_proceso | date: 'dd/MM/yyyy'}}</h2>
-            <div class="img">
-                <img src={{reserve.foto}} alt="">
-            </div>
-            <div class="detail">
-                <div class="detail__title">
-                    <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
+    <!--(ionSlideDidChange)="slideChanged()"-->
+    <ion-slides class="pagemainclass" zoom="false">
+        <ion-slide>
+            <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
+                <div class="my-reserve__header">
+                    <div class="text">
+                        <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
+                        <span class="model">{{reserve.modelo}}</span>
+                    </div>
+                    <div [ngClass]="{'active': (reserve.estado == 'Confirmado' || reserve.estado == 'Proceso'), 'pending': reserve.estado == 'Pendiente' }" ng-show="false">
+                        <span>{{reserve.estado}}</span>
+                    </div>
                 </div>
-                <ion-item>
-                    <ion-icon name="pin" item-left large></ion-icon>
-                    <span>{{reserve.sucursal}}</span>
-                    <p>{{reserve.sucursal_municipio}}</p>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="speedometer" item-left large></ion-icon>
-                    <span>Combustible: {{reserve.tipo_combustible}}</span>
-                    <p>Transmición: {{reserve.tipo_transmicion}}</p>
-                </ion-item>
+                <div class="my-reserve__content">
+                    <h2 class="title">{{reserve.fecha_inicia_proceso | date: 'dd/MM/yyyy'}} - {{reserve.fecha_final_proceso | date: 'dd/MM/yyyy'}}</h2>
+                    <div class="img">
+                        <img src={{reserve.foto}} alt="">
+                    </div>
+                    <div class="detail">
+                        <div class="detail__title">
+                            <span class="subtitle">{{reserve.puertas}} puertas | {{reserve.puestos}} puestos</span>
+                        </div>
+                        <ion-item>
+                            <ion-icon name="pin" item-left large></ion-icon>
+                            <span>{{reserve.sucursal}}</span>
+                            <p>{{reserve.sucursal_municipio}}</p>
+                        </ion-item>
+                        <ion-item>
+                            <ion-icon name="speedometer" item-left large></ion-icon>
+                            <span>Combustible: {{reserve.tipo_combustible}}</span>
+                            <p>Transmición: {{reserve.tipo_transmicion}}</p>
+                        </ion-item>
+                    </div>
+                    <ion-item>
+                        <button ion-button icon-left clear item-left>
+                            Total
+                        </button>
+                        <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
+                        <button ion-button icon-left clear item-right (click)="goToDetail(reserve)">
+                            <ion-icon name="navigate"></ion-icon> Ver más
+                        </button>
+                    </ion-item>
+                </div>
             </div>
-            <ion-item>
-                <button ion-button icon-left clear item-left>
-                    Total
-                </button>
-                <span item-left>{{reserve.precio_dia | currency:'USD':true:'1.0-2'}}</span>
-                <button ion-button icon-left clear item-right (click)="goToDetail(reserve)">
-                    <ion-icon name="navigate"></ion-icon> Ver más
-                </button>
-            </ion-item>
-        </div>
-    </div>
-    <not-data [hidden]="reserves == undefined || reserves.length > 0"></not-data>
+            <not-data [hidden]="reserves == undefined || reserves.length > 0"></not-data>
+        </ion-slide>
+        <ion-slide>
+            <div class="my-reserve" *ngFor="let history of historys" [hidden]="historys == undefined || historys.length == 0">
+                <div class="my-reserve__header">
+                    <div class="text">
+                        <span class="name">{{history.marca_nombre}} {{history.auto_nombre}}</span>
+                        <span class="model">{{history.modelo}}</span>
+                    </div>
+                    <div [ngClass]="{'active': history.estado == 'Finalizado', 'rejected': history.estado == 'Rechazado' }" ng-show="false">
+                        <span>{{history.estado}}</span>
+                    </div>
+                </div>
+                <div class="my-reserve__content">
+                    <h2 class="title">{{history.fecha_inicia_proceso | date: 'dd/MM/yyyy'}} - {{history.fecha_final_proceso | date: 'dd/MM/yyyy'}}</h2>
+                    <div class="img">
+                        <img src={{history.foto}} alt="">
+                    </div>
+                    <div class="detail">
+                        <div class="detail__title">
+                            <span class="subtitle">{{history.puertas}} puertas | {{history.puestos}} puestos</span>
+                        </div>
+                        <ion-item>
+                            <ion-icon name="pin" item-left large></ion-icon>
+                            <span>{{history.sucursal}}</span>
+                            <p>{{history.sucursal_municipio}}</p>
+                        </ion-item>
+                        <ion-item>
+                            <ion-icon name="speedometer" item-left large></ion-icon>
+                            <span>Combustible: {{history.tipo_combustible}}</span>
+                            <p>Transmición: {{history.tipo_transmicion}}</p>
+                        </ion-item>
+                    </div>
+                    <ion-item>
+                        <button ion-button icon-left clear item-left>
+                            Total
+                        </button>
+                        <span item-left>{{history.precio_dia | currency:'USD':true:'1.0-2'}}</span>
+                        <button ion-button icon-left clear item-right (click)="goToDetail(history)">
+                            <ion-icon name="navigate"></ion-icon> Ver más
+                        </button>
+                    </ion-item>
+                </div>
+            </div>
+            <not-data [hidden]="historys == undefined || historys.length > 0"></not-data>
+        </ion-slide>
+    </ion-slides>
 </ion-content>

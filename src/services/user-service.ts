@@ -18,8 +18,8 @@ export class UserService {
     })
   }
 
-  public getReserveClient(){
-  	return this.apiService.get('/reserve/get-reserve-client' )
+  public getReserveClient(history: string){
+  	return this.apiService.get('/reserve/get-reserve-client?history=' + history)
     .map(
       data => {
         return data;

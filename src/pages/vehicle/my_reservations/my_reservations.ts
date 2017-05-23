@@ -13,6 +13,7 @@ import { UtilProvider } from '../../../providers/util-provider';
 export class MyReservationsPage {
 
   public reserves: any = undefined;
+  public historys: any = undefined;
 
   constructor(
     private nav: NavController,
@@ -24,16 +25,25 @@ export class MyReservationsPage {
 
 
   ionViewDidLoad() {
-    this.getClientReserve();
+    this.getClientReserve('false');
+    this.getClientReserve('true');
   }
 
-  public getClientReserve() {
+  public getClientReserve(history: string) {
     this.util.loading();
-    this.userService.getReserveClient().subscribe(
+    this.userService.getReserveClient(history).subscribe(
       data => {
-        this.reserves = [];
+        if (history == 'true') {
+          this.historys = [];
+        } else {
+          this.reserves = [];
+        }
         if (data != undefined && data.length > 0) {
-          this.reserves = data;
+          if (history == 'true') {
+            this.historys = data;
+          } else {
+            this.reserves = data;
+          }
           console.log(this.reserves);
         }
         this.util.loadingDismiss();
@@ -46,7 +56,7 @@ export class MyReservationsPage {
     );
   }
 
-  public goToDetail(reserve: string){
+  public goToDetail(reserve: string) {
     this.nav.push(ReserveDetailPage, { reserve: reserve })
   }
 }
