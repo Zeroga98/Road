@@ -3,6 +3,7 @@ import { App } from 'ionic-angular';
 
 import { LoginPage } from '../../pages/user/login/login';
 import { SignUpPage } from '../../pages/user/signup/signup';
+import { VehicleListPage } from '../../pages/vehicle/list/vehicle-list'; 
 import { AuthService } from '../../services/auth-service';
 import { MenuService } from '../../services/menu-service';
 
@@ -46,6 +47,6 @@ export class MenuHeaderComponent {
   Logout(){
     this.authService.logout();
     this.menuService.resetMenu();
-    this.appCtrl.getRootNav().setRoot(LoginPage);
+    this.appCtrl.getRootNav().setRoot(VehicleListPage);
   }
 }

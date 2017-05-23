@@ -20,10 +20,10 @@ export class VehicleReservePage {
   public branch_destiny: any;
   sameSite: boolean = false;
   public limitInitDate: any = new Date();
- public dateOut: string =this.sumday(this.limitInitDate,2).toISOString().substring(0, 10);
-  public dateIn: string = this.limitInitDate.toISOString().substring(0, 10);  
-  public dateOutMin: string =this.sumday(this.limitInitDate,2).toISOString().substring(0, 10);
-  public dateInMin: string = this.limitInitDate.toISOString().substring(0, 10);  
+  public dateOut: string = this.sumday(this.limitInitDate, 2).toISOString().substring(0, 10);
+  public dateIn: string = this.limitInitDate.toISOString().substring(0, 10);
+  public dateOutMin: string = this.sumday(this.limitInitDate, 2).toISOString().substring(0, 10);
+  public dateInMin: string = this.limitInitDate.toISOString().substring(0, 10);
   reserveDates: any;
   public validate: boolean;
 
@@ -32,7 +32,7 @@ export class VehicleReservePage {
     public navParams: NavParams,
     private vehicleService: VehicleService,
     private util: UtilProvider
-  ) {  
+  ) {
     console.log(this.dateOut);
 
 
@@ -43,17 +43,19 @@ export class VehicleReservePage {
     this.getBranchs();
     this.getVehicleReserveDates();
   }
+
   public sumday(date: Date, days: number) {
-    let result:Date = new Date(date);
+    let result: Date = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
   }
-   public sumdateout(date: string, days: number) {
-    let result:Date = new Date(date);
+
+  public sumdateout(date: string, days: number) {
+    let result: Date = new Date(date);
     result.setDate(result.getDate() + days);
-    this.dateOutMin=(new Date(date) > new Date(this.dateOut))? result.toISOString().substring(0,10): this.dateOutMin;
-    this.dateOut= (new Date(date) > new Date(this.dateOut))? result.toISOString().substring(0,10): this.dateOutMin;
-     console.log(this.dateOutMin);
+    this.dateOutMin = (new Date(date) > new Date(this.dateOut)) ? result.toISOString().substring(0, 10) : this.dateOutMin;
+    this.dateOut = (new Date(date) > new Date(this.dateOut)) ? result.toISOString().substring(0, 10) : this.dateOutMin;
+    console.log(this.dateOutMin);
   }
 
 
@@ -72,6 +74,7 @@ export class VehicleReservePage {
         let loadin_dismiss = this.util.loadingDismiss();
       });
   }
+
   private getVehicleReserveDates() {
     this.loading = this.util.loading();
     this.vehicleService.getVehicleReserveDates(this.vehicle.vehiculo_id).subscribe(response => {
@@ -93,17 +96,16 @@ export class VehicleReservePage {
     console.log(this.reserveDates);
     for (let i = 0; i < this.reserveDates.length; i++) {
       let daIn: any = new Date(this.reserveDates[i].fecha_inicia_proceso);
-      let daOut: any = new Date(this.reserveDates[i].fecha_final_proceso);      
+      let daOut: any = new Date(this.reserveDates[i].fecha_final_proceso);
       if (da <= daOut && da >= daIn) {
-        this.validate= true;
+        this.validate = true;
         this.util.showError('Lo sentimos', 'Este vehiculo ya esta reservado para esta fecha.');
         break;
-      }else {
-        this.validate= false;
+      } else {
+        this.validate = false;
       }
     }
   }
-  
 
   btnSearch() {
     this.showSearchBar = !this.showSearchBar;
@@ -112,7 +114,6 @@ export class VehicleReservePage {
   public goToProfile() {
     this.nav.push(ProfilePage)
   }
-
 
   public goConfirm() {
     let request =

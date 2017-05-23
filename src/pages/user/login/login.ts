@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../../services/auth-service';
 import { UserService } from '../../../services/user-service';
 import { MenuService } from '../../../services/menu-service';
@@ -7,6 +7,7 @@ import { MenuService } from '../../../services/menu-service';
 import { UtilProvider } from '../../../providers/util-provider';
 import { SignUpPage } from '../signup/signup';
 import { VehicleListPage } from '../../vehicle/list/vehicle-list'; 
+import { VehicleReservePage } from '../../vehicle/reserve/vehicle-reserve';
 
 import { User } from '../../../models/user.model';
 
@@ -22,6 +23,7 @@ export class LoginPage {
 
   constructor(
       private nav: NavController, 
+      public navParams: NavParams,
       private authService: AuthService, 
       private userService: UserService,
       public menuService: MenuService,
@@ -43,7 +45,12 @@ export class LoginPage {
       if(response.token){
         this.getUserProfile();
         setTimeout(() => {
-          this.nav.setRoot(VehicleListPage)
+          let vehicle = this.navParams.get('vehicle');
+          if(vehicle){
+            this.nav.setRoot(VehicleReservePage, { vehicle: vehicle });
+          } else {
+            this.nav.setRoot(VehicleListPage);
+          }
         });  
       } else{
         this.util.presentToast(response);
