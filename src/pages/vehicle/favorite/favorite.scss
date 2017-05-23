@@ -87,3 +87,24 @@
             }
         }
     }
+/*------------------------------------*\
+    $LOGO-LOGIN
+\*------------------------------------*/
+  .logo-login {
+        background-color: transparent;
+        width: 95%;
+        margin: 0 auto;
+        text-align: center;
+        & h2 {
+            color: white;
+            font-size: 2em;
+            margin-top: -25%;
+        }
+        & img {
+            opacity: .7;
+            filter: inherit;
+        }
+        & * {
+            border: none!important;
+        }
+    }
