@@ -14,7 +14,7 @@ import { SelecDatePage } from '../select_date/select_date';
 })
 export class FavoritePage {
 
-  public vehicles: any = [];
+  public vehicles: any = undefined;
   public favorito: number = null;
 
   constructor(
@@ -65,7 +65,8 @@ export class FavoritePage {
     this.util.loading();
     this.vehicleService.getVehicleFavorites().subscribe(
       vehicles => {
-        console.log(vehicles);
+        this.vehicles = [];
+        //console.log(vehicles);
         this.vehicles = vehicles
         this.util.loadingDismiss();
       },

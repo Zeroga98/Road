@@ -65,7 +65,6 @@ export class MenuService {
   }
 
   private rolAdmin() {
-    this.pages.push({ title: 'Usuarios', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' });
     this.pages.push({ title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' });
     this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' });
     this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' });

@@ -52,10 +52,9 @@ export class VehicleReservePage {
 
   public sumdateout(date: string, days: number) {
     let result: Date = new Date(date);
-    result.setDate(result.getDate() + days);
+    result.setDate(result.getDate() + days + 1);
     this.dateOutMin = (new Date(date) > new Date(this.dateOut)) ? result.toISOString().substring(0, 10) : this.dateOutMin;
     this.dateOut = (new Date(date) > new Date(this.dateOut)) ? result.toISOString().substring(0, 10) : this.dateOutMin;
-    console.log(this.dateOutMin);
   }
 
 
@@ -80,7 +79,7 @@ export class VehicleReservePage {
     this.vehicleService.getVehicleReserveDates(this.vehicle.vehiculo_id).subscribe(response => {
       setTimeout(() => {
         this.reserveDates = response;
-        this.verifyDates(this.dateIn);
+        this.verifyDates(this.dateIn, this.dateOut);
         console.log(response);
         let loadin_dismiss = this.util.loadingDismiss();
       });
@@ -91,13 +90,17 @@ export class VehicleReservePage {
       });
   }
 
-  public verifyDates(d: string) {
-    let da: any = new Date(d);
-    console.log(this.reserveDates);
+  public verifyDates(d1: string, d2: string) {
+    let date1: any = new Date(d1);
+    let date2: any = new Date(d2);
+    date1.setDate(date1.getDate() + 1);
+    date2.setDate(date2.getDate() + 1);
     for (let i = 0; i < this.reserveDates.length; i++) {
       let daIn: any = new Date(this.reserveDates[i].fecha_inicia_proceso);
       let daOut: any = new Date(this.reserveDates[i].fecha_final_proceso);
-      if (da <= daOut && da >= daIn) {
+      console.log(date1);
+      console.log(daOut);
+      if (date1 >= daIn && date1 <= daOut || date2 >= daIn && date2 <= daOut) {
         this.validate = true;
         this.util.showError('Lo sentimos', 'Este vehiculo ya esta reservado para esta fecha.');
         break;

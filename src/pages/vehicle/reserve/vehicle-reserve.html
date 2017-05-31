@@ -42,11 +42,11 @@
         <ion-item-divider></ion-item-divider>
         <ion-item>
             <ion-label>Viajo el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [min]="dateInMin" max="2020-10-31" [(ngModel)]="dateIn" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn); sumdateout(dateIn,1)"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY" [min]="dateInMin" max="2020-10-31" [(ngModel)]="dateIn" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar" (ionChange)="verifyDates(dateIn, dateOut); sumdateout(dateIn,1)"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Llego el</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY"  [min]="dateOutMin" max="2020-10-31"  [(ngModel)]="dateOut" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"  (ionChange)="verifyDates(dateOut)"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY"  [min]="dateOutMin" max="2020-10-31"  [(ngModel)]="dateOut" monthShortNames='Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic' doneText="Ok" cancelText="Cancelar"  (ionChange)="verifyDates(dateIn, dateOut)"></ion-datetime>
         </ion-item>
         <ion-item-divider></ion-item-divider>
         <ion-item>

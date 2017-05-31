@@ -29,8 +29,13 @@ export class ConfirmReservePage {
   public confirm(){
     this.loading = this.util.loading();
     this.vehicleService.reserveVehicle(this.request).subscribe(response => { 
-      this.nav.setRoot(VehicleListPage);
-      this.util.showError('Solicitado', 'Te esperamos en nuestra sucursal.');
+      if(response[0].status == 'OK'){
+        this.nav.setRoot(VehicleListPage);
+        this.util.showError('Solicitado', 'Te esperamos en nuestra sucursal.');
+      } else {
+        this.util.showError('No disponible', response[0].description);
+      }
+      
       this.loading.dismiss();
     },
     error => {
