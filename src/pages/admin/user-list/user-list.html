@@ -12,9 +12,9 @@
     <ion-list>
         <ion-item>
             <ion-label>Filtrando por </ion-label>
-            <ion-select cancelText="Cancelar" okText="Aceptar">
+            <ion-select cancelText="Cancelar" okText="Aceptar" (ionChange)="onInput($event)">
                 <ion-option value="all" selected>Todos</ion-option>
-                <ion-option *ngFor="let rol of rols" value="{{rol.id}}">{{rol.nombre}}</ion-option>
+                <ion-option *ngFor="let rol of rols" value="{{rol.nombre}}">{{rol.nombre}}</ion-option>
             </ion-select>
         </ion-item>
         <section *ngIf="users">

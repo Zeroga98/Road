@@ -74,7 +74,7 @@ export class UtilProvider {
 			alert.addInput({
 				type: 'checkbox',
 				label: data[i].label,
-				value: data[i].value,
+				value: data[i].label,
 				checked: data[i].check
 			});
 		}

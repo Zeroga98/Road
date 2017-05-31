@@ -11,6 +11,7 @@ import { UtilProvider } from '../../../providers/util-provider';
 export class UserListPage {
 
 	public users: any = undefined;
+	public users_copy: any = undefined;
 	public rols: any = undefined;
 
 	constructor(
@@ -40,6 +41,7 @@ export class UserListPage {
 							this.users[i].rols.push(this.util.camelCase(roles[j]));
 						}
 					}
+					this.users_copy = this.users;
 				}
 				this.util.loadingDismiss();
 			},
@@ -89,14 +91,52 @@ export class UserListPage {
 	}
 
 	public SelectedRol(user: any){
-		console.log(user.rols);
 		let data = [];
 		for (var i = 0; i < this.rols.length; ++i) {
-			data.push({ label: this.rols[i].nombre, value: this.rols[i].id, check: this.findByRol(user.rols, this.rols[i].nombre) != -1 });
+			data.push({ label: this.rols[i].nombre, check: this.findByRol(user.rols, this.rols[i].nombre) != -1 });
 		}
 		this.util.alertCheckbox(data, (data => {
-			console.log(data);
+			this.changeRolsUser(user, data);
 		}));
+	}
+
+	private changeRolsUser(user: any, checks: any){
+		let request = {client: '0', admin: '0', employee: '0', provider: '0', user_email: user.email};
+		let new_rols = [];
+		let new_rol_string = "";
+		for (var i = 0; i < checks.length; ++i) {
+			if(checks[i] == 'Cliente'){
+				request.client = '1';
+				new_rol_string += 'cliente,';
+			} else if(checks[i] == 'Proveedor'){
+				request.provider = '1';
+				new_rol_string += 'proveedor,';
+			} else if(checks[i] == 'Admin'){
+				request.admin = '1';
+				new_rol_string += 'admin,';
+			} else if(checks[i] == 'Empleado'){
+				request.employee = '1';
+				new_rol_string += 'empleado,';
+			}
+			new_rols.push(checks[i]);
+		}
+		new_rol_string = new_rol_string.substring(0, new_rol_string.length - 1);
+
+		this.util.loading();
+		this.userService.changeRolsUser(request)
+		.subscribe(data => {
+			if(data[0].status == 'OK'){
+				user.roles = new_rol_string;
+				user.rols = new_rols;
+			} else {
+				this.util.presentToast("Ocurrio un problema al cambiar el estado, intentelo más tarde");
+			}
+			this.util.loadingDismiss();
+		},
+		error => {
+			this.util.loadingDismiss();
+			console.log(error);
+		});
 	}
 
 	private findByRol(array: any, rol: string){
@@ -107,4 +147,17 @@ export class UserListPage {
 		}
 		return -1;
 	}
+	
+	public onInput(event: any) {
+		this.users = this.users_copy;
+		if(event != 'all'){
+			this.users = this.users_copy;
+	    	let val = event;
+		    if (val && val.trim() != '') {
+		      this.users = this.users.filter((item) => {
+		        return item.roles.toLowerCase().indexOf(val.toLowerCase()) > -1;
+		      })
+	    	}
+		}
+  	}
 }

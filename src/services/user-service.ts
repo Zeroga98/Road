@@ -50,4 +50,12 @@ export class UserService {
       });
   }
 
+  public changeRolsUser(data: any){
+    return this.apiService.post('/user/change-rols', data)
+      .map(
+      data => {
+        return data;
+      });
+  }
+
 }
