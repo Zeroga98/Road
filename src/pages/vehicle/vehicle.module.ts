@@ -22,7 +22,7 @@ import { VehicleItemComponent } from './item/vehicle-item';
     	VehicleItemComponent,
 		VehicleDetailPage,
 		VehicleReservePage,
-		ConfirmReservePage,
+		ConfirmReservePage, 
 		MyReservationsPage,
 		OwnCarsPage,
 		NotDataComponent,

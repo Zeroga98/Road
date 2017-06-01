@@ -58,4 +58,12 @@ export class UserService {
       });
   }
 
+  public getAllReserve(data: any){
+    return this.apiService.get('/reserve/get-all-reserve', data)
+      .map(
+      data => {
+        return data;
+      });
+  }
+
 }
