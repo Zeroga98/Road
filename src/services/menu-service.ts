@@ -46,6 +46,16 @@ export class MenuService {
     this.pages.push(
       { title: 'Acerca de', component: aboutPage, icon: 'ios-information-circle-outline', access: 'client' }
     );
+
+    for (var i = 0; i < this.pages.length; i++) {
+      let temp = this.pages[i];
+        for (var j = i+1; j < this.pages.length; j++) {    
+          if (temp.title===this.pages[j].title) {
+            this.pages.splice(j,j+1);
+          }
+        }
+      
+    }
   }
 
   public resetMenu() {
@@ -64,10 +74,10 @@ export class MenuService {
     this.pages.push({ title: 'Favoritos', component: FavoritePage, icon: 'star-outline', access: 'client' });
   }
 
-  private rolAdmin() {
-    this.pages.push({ title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'admin' });
+  private rolAdmin() {    
     this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' });
     this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' });
+    this.pages.push({ title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' });
   }
 
   private rolProvider() {
@@ -76,9 +86,9 @@ export class MenuService {
   }
 
   private rolEmployee() {
-    this.pages.push(
-      { title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'employee' },
-      { title: 'Registrar vehículo', component: RegisterCarPage, icon: 'ios-add-circle-outline', access: 'employee' }
-    );
+    this.pages.push({ title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'employee' });
+    this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'employee' });
+    this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'employee' });
+    this.pages.push({ title: 'Contratos', component: CutoffDatePage, icon: 'ios-podium-outline', access: 'employee' });
   }
 }
