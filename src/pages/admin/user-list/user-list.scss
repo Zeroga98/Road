@@ -1,4 +1,8 @@
 page-user-list {
+    ion-card {
+        position: relative;
+        padding-top: 1em;
+    }
     .no-display {
         display: none;
     }
@@ -13,5 +17,17 @@ page-user-list {
     }
     .brd-lft {
         border-left: solid 1px lightgray;
+    }
+    .state-user {
+        position: absolute;
+        z-index: 99;
+        right: 2em;
+        top: .5em;
+        & .user-active{
+            color: green; 
+        }
+    }
+    .align-middle{
+        vertical-align: middle;
     }
 }

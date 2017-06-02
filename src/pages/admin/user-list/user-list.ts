@@ -80,7 +80,7 @@ export class UserListPage {
 				if(data[0].status == 'OK'){
 					user.estado = (user.estado == 1)? 0 : 1;
 				} else {
-					this.util.presentToast("Ocurrio un problema al cambiar el estado, intentelo más tarde");
+					this.util.presentToast("Ocurrió un problema al cambiar el estado, intentelo más tarde");
 				}
 				this.util.loadingDismiss();
 			},
@@ -129,7 +129,7 @@ export class UserListPage {
 				user.roles = new_rol_string;
 				user.rols = new_rols;
 			} else {
-				this.util.presentToast("Ocurrio un problema al cambiar el estado, intentelo más tarde");
+				this.util.presentToast("Ocurrió un problema al cambiar el estado, intentelo más tarde");
 			}
 			this.util.loadingDismiss();
 		},
