@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar color="red">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title *ngIf="!showSearchBar" class="tracking-in-expand">Registro de usuarios</ion-title>
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar" *ngIf="showSearchBar" class="search-input" animated="true" autocomplete="on" autocorrect="on">
+        </ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="header-msg">
+        <h4>Invita nuevos usuarios a la familia Road</h4>
+        <p>Todos los campos deben ser superiores a 3 letras</p>
+    </div>
+    <form class="top-5px">
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-label floating>Nombres</ion-label>
+                        <ion-input type="text" placeholder="Nombres" name="name" [(ngModel)]="User.nombres" required min="3"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Apellidos</ion-label>
+                        <ion-input type="text" placeholder="Apellidos" name="lastname" [(ngModel)]="User.apellidos" required min="3"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Correo</ion-label>
+                        <ion-input type="email" placeholder="Correo" name="email" [(ngModel)]="User.email" required min="3"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Contraseña</ion-label>
+                        <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]="User.password" required min="3"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row class="abs-btn">
+            <ion-col>
+                <button ion-button color="red" full type="submit" (click)="signUp()" [disabled]="!validUser()">Agregar usuario</button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

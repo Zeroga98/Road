@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RegisterCarPage } from './register-car/register-car';
+import { RegisterUserPage } from './register-user/register-user';
 
 @NgModule({
 	imports: [IonicPageModule],
   	declarations: [
-		RegisterCarPage
+		RegisterUserPage
   	],
   	entryComponents: [    
-		RegisterCarPage
+		RegisterUserPage
   	]
 })
 

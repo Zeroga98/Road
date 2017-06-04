@@ -62,6 +62,18 @@ export class AuthService {
     })
   }
 
+  public signUpAdmin(User) {
+    return this.apiService.post('/user/signup', User)
+    .map(
+      data => {
+        if(data.token){
+          return data;
+        } else {
+           return data[0].description;
+        }
+    })
+  }
+
   public setCurrentUser(user: User){
     this.currentUserSubject.next(user);
   }

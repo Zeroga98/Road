@@ -11,6 +11,7 @@ import { CutoffDatePage } from '../pages/provider/cutoff-date/cutoff-date';
 import { OwnCarsPage } from '../pages/vehicle/own-cars/own-cars';
 import { aboutPage } from '../pages/user/about/about';
 import { RegisterCarPage } from '../pages/employee/register-car/register-car';
+import { RegisterUserPage } from '../pages/employee/register-user/register-user';
 import { UserListPage } from '../pages/admin/user-list/user-list';
 import { ReserveListPage } from '../pages/admin/reserve-list/reserve-list';
 
@@ -77,7 +78,7 @@ export class MenuService {
   private rolAdmin() {    
     this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' });
     this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' });
-    this.pages.push({ title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'admin' });
+    this.pages.push({ title: 'Crear usuario', component: RegisterUserPage, icon: 'ios-contacts-outline', access: 'admin' });
   }
 
   private rolProvider() {
@@ -86,7 +87,7 @@ export class MenuService {
   }
 
   private rolEmployee() {
-    this.pages.push({ title: 'Crear usuario', component: VehicleListPage, icon: 'ios-contacts-outline', access: 'employee' });
+    this.pages.push({ title: 'Crear usuario', component: RegisterUserPage, icon: 'ios-contacts-outline', access: 'employee' });
     this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'employee' });
     this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'employee' });
     this.pages.push({ title: 'Contratos', component: CutoffDatePage, icon: 'ios-podium-outline', access: 'employee' });
