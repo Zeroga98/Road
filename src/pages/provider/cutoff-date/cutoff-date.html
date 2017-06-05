@@ -20,8 +20,14 @@
                 <ion-icon name="clipboard" item-left large></ion-icon>
                 <h2>Contrato #{{contract.contrato_id}}</h2>
                 <p>{{contract.tipo_contrato}}</p>
-                <p>Sueldo: {{contract.sueldo | currency:'USD':true:'1.0-2'}}</p>
-                <p>{{contract.fecha_inicio | date: 'dd/MM/yyyy'}} hasta {{contract.fecha_final | date: 'dd/MM/yyyy'}}</p>
+                <p>Sueldo: 
+                    <span *ngIf="contract.sueldo">{{contract.sueldo | currency:'USD':true:'1.0-2'}}</span>
+                    <span *ngIf="!contract.sueldo">{{contract.sueldo_admin | currency:'USD':true:'1.0-2'}}</span>
+                </p>
+                <p>
+                    <span [hidden]="!contract.tipo_contrato == 'Tiempo indefinido'">Inició </span>{{contract.fecha_inicio | date: 'dd/MM/yyyy'}} 
+                    <span [hidden]="contract.tipo_contrato == 'Tiempo indefinido'">hasta {{contract.fecha_final | date: 'dd/MM/yyyy'}}</span>
+                </p>
                 <!--<ion-icon name="eye" item-right medium></ion-icon>-->
             </ion-item>
         </ion-list>

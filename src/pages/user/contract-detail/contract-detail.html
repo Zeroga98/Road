@@ -8,20 +8,21 @@
         </ion-searchbar>
     </ion-navbar>
 </ion-header>
-
-
 <ion-content>
     <ion-list>
-        <!--<ion-item class="contract-select">
-            <ion-label>Contrato</ion-label>
-            <ion-select [(ngModel)]="Contratos" multiple="true" cancelText="Cancelar" okText="Ok!">
-                <ion-option value="1" selected="true">#1</ion-option>
-                <ion-option value="2">#2</ion-option>
-                <ion-option value="3">#3</ion-option>
-                <ion-option value="4">#4</ion-option>
-                <ion-option value="5">#5</ion-option>
-            </ion-select>
-        </ion-item>-->
+        <div class="wrap" *ngIf="payment != undefined && payment.length == 0">
+            <div class="content-img">
+                <img src="./assets/not_data.svg" />
+            </div>
+            <div class="text-wrap">
+                <span class="title">
+                No hay historial de pagos
+          </span>
+                <span class="subtitle">
+                ¡Aún no te han pagado!
+          </span>
+            </div>
+        </div>
         <ion-list *ngIf="payment != undefined && payment.length > 0">
             <ion-list-header>
                 Movimientos
@@ -29,7 +30,8 @@
             <ion-item>
                 <ion-icon name="cash" item-left></ion-icon>
                 <h2>Próximo pago</h2>
-                <span item-right>{{payment[0].proximo_pago | currency:'USD':true:'1.0-2' }}</span>
+                <span item-right *ngIf="payment[0].proximo_pago">{{payment[0].proximo_pago | currency:'USD':true:'1.0-2' }}</span>
+                <span item-right *ngIf="!payment[0].proximo_pago">{{payment[0].pago_admin | currency:'USD':true:'1.0-2' }}</span>
             </ion-item>
             <ion-item *ngFor="let pay of payment" [hidden]="pay.pago == null">
                 <ion-icon name="cash" item-left></ion-icon>
