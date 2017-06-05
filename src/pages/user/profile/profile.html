@@ -6,33 +6,46 @@
         <ion-title>Perfil</ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-    <ion-card>
-        <ion-item>
-            <ion-avatar item-left>
-                <img [src]="currentUser?.image" />
-                <!--<img src="http://visualoop.com/wp-content/themes/visualoop/img/there-is-no-picture-for-this-user2.png" />-->
-            </ion-avatar>
+<ion-content>
+    <div>
+        <div class="user-card">
             <h2>{{currentUser?.name}}</h2>
             <p>{{currentUser?.email}}</p>
+            <div class="user-img">
+                <img src="http://visualoop.com/wp-content/themes/visualoop/img/there-is-no-picture-for-this-user2.png" />
+                <ion-icon name="female"></ion-icon>
+                <ion-icon name="male" *ngIf="false"></ion-icon>
+                <!--<img [src]="currentUser?.image" />-->
+            </div>
+        </div>
+        <div class="user-roles">
+            <span>
+                    <ion-icon name="logo-android"></ion-icon>
+                </span>
+        </div>
+    </div>
+    <ion-row no-padding>
+        <ion-col>
+            <button ion-button clear icon-left>
+                <ion-icon name='call'></ion-icon>
+                321123456
+            </button>
+        </ion-col>
+        <ion-col text-center>
+            <button ion-button clear icon-left>
+                <ion-icon name='card'></ion-icon>
+                1117535434
+            </button>
+        </ion-col>
+    </ion-row>
+    <ion-list>
+        <ion-item>
+            <ion-icon name="calendar" item-left></ion-icon>
+            Fecha de registro: 20 marzo 2413
         </ion-item>
-        <ion-card-content>
-
-        </ion-card-content>
-        <ion-row>
-            <ion-col>
-                <button ion-button icon-left clear small>
-                    <ion-icon name="thumbs-up"></ion-icon>
-                    <div>Reservas</div>
-                </button>
-            </ion-col>
-            <ion-col>
-                <button ion-button icon-left clear small>
-                    <ion-icon name="text"></ion-icon>
-                    <div>Favoritos</div>
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
-
+        <ion-item>
+            <ion-icon name="calendar" item-left></ion-icon>
+            Fecha de nacimiento: 20 marzo 2413
+        </ion-item>
+    </ion-list>
 </ion-content>

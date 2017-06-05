@@ -1,3 +1,37 @@
 page-profile {
-  
+    .user-card {
+        color: white;
+        text-align: center;
+        background: linear-gradient(45deg, #E81515 45px, transparent 45px)64px 64px, linear-gradient(45deg, #E81515 45px, transparent 45px, transparent 91px, #F55448 91px, #F55448 135px, transparent 135px), linear-gradient(-45deg, #E81515 23px, transparent 23px, transparent 68px, #E81515 68px, #E81515 113px, transparent 113px, transparent 158px, #E81515 158px);
+        background-size: 128px 128px;
+        background-color: #F55448;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        .user-img {
+            position: relative;
+            & img {
+                width: 8em;
+            }
+            & ion-icon {
+                position: absolute;
+                right: 35%;
+                bottom: .2em;
+                background: #FF1717;
+                padding: 5px 8px;
+                border-radius: 50%;
+            }
+        }
+    }
+    .user-roles {
+        background-color: #F55448;
+        height: 3em;
+        text-align: center;
+        ion-icon {
+            border-radius: 50%;
+            width: 2em;
+            height: 2em;
+            padding: .5em;
+            background-color: #FF1717;
+        }
+    }
 }
