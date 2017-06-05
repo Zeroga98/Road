@@ -61,12 +61,17 @@ export class Road {
           console.log(data);
           if(data != undefined && data[0].status != 'ERROR'){
             this.menuService.configMenu(data[0].rol_nombre);
+            this.currentUser.id = data[0].id;
+            this.currentUser.num_tipo_identificacion = data[0].num_tipo_identificacion;
             this.currentUser.foto = data[0].foto;
             this.currentUser.genero = data[0].genero;
             this.currentUser.lastname = data[0].lastname;
             this.currentUser.celular = data[0].celular;
             this.currentUser.rol_nombre = data[0].rol_nombre;
             this.currentUser.tipo = data[0].tipo;
+            this.currentUser.fecha_nacimiento = data[0].fecha_nacimiento;
+            this.currentUser.fecha_registro = data[0].fecha_registro;
+
             this.authService.setCurrentUser(this.currentUser);
             
           } else if(data[0].type == 'token_null'){

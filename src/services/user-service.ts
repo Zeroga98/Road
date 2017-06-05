@@ -10,6 +10,14 @@ export class UserService {
   constructor(public apiService: ApiService) {
   }
 
+  public getProfile() {
+    return this.apiService.get('/user/get-profile')
+      .map(
+      data => {
+        return data;
+      });
+  }
+
   public getUser() {
     return this.apiService.get('/user/get-rol')
       .map(
@@ -34,7 +42,7 @@ export class UserService {
       });
   }
 
-  public getAllRols(){
+  public getAllRols() {
     return this.apiService.get('/user/get-all-rols')
       .map(
       data => {
@@ -42,7 +50,7 @@ export class UserService {
       });
   }
 
-  public changeStateUser(data: any){
+  public changeStateUser(data: any) {
     return this.apiService.post('/user/change-state', data)
       .map(
       data => {
@@ -50,7 +58,7 @@ export class UserService {
       });
   }
 
-  public changeRolsUser(data: any){
+  public changeRolsUser(data: any) {
     return this.apiService.post('/user/change-rols', data)
       .map(
       data => {
@@ -58,7 +66,7 @@ export class UserService {
       });
   }
 
-  public getAllReserve(data: any){
+  public getAllReserve(data: any) {
     return this.apiService.get('/reserve/get-all-reserve', data)
       .map(
       data => {

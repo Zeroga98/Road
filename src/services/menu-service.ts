@@ -44,9 +44,7 @@ export class MenuService {
         this.rolEmployee();
       }
     }
-    this.pages.push(
-      { title: 'Acerca de', component: aboutPage, icon: 'ios-information-circle-outline', access: 'client' }
-    );
+    //this.pages.push({ title: 'Acerca de', component: aboutPage, icon: 'ios-information-circle-outline', access: 'client' });
 
     for (var i = 0; i < this.pages.length; i++) {
       let temp = this.pages[i];

@@ -1,4 +1,5 @@
 export class User {
+  id: number;
   name: string;
   lastname: string;
   email: string;
@@ -8,5 +9,8 @@ export class User {
   rol_nombre: string;
   tipo: string;
   rol: string;
+  num_tipo_identificacion: number;
+  fecha_registro: string;
+  fecha_nacimiento: string;
   token: string;
 }

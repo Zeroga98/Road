@@ -10,7 +10,7 @@ import { User } from '../../../models/user.model';
 export class ProfilePage {
 
   isAuthenticated: boolean;
-  currentUser: User;
+  public currentUser: User;
 
   constructor( public authService: AuthService) {}
 
@@ -30,7 +30,8 @@ export class ProfilePage {
   ionViewDidLoad() {
     /** Suscripción al observable que retornará los datos del usuario actual */
     this.authService.currentUser.subscribe((userData) => { 
-      this.currentUser = userData
+      this.currentUser = userData;
+      console.log(this.currentUser);
     })
   }
   
