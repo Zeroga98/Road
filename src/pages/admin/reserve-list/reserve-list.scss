@@ -12,7 +12,18 @@ page-reserve-list {
     .align-right {
         text-align: right;
     }
-
+    .btn--rejected{
+    position: absolute;
+    left: 0px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 40%;
+    background-color: #faddd2;
+    padding: 10px;
+    color: #ff5200;
+    font-weight: 500;
+    border-left: 4px solid #ff7600;
+    }
     .scroll-content {
         position: absolute;
         top: 0;

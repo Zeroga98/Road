@@ -18,7 +18,7 @@
                         <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
                         <span class="model">{{reserve.vehiculo_modelo}}</span>
                     </div>
-                    <button ion-button item-left *ngIf="reserve.estado == 'Pendiente'" (click)="rejectReserve(reserve, i)">Rechazar</button>
+                    <button class="btn--rejected" ion-button item-left *ngIf="reserve.estado == 'Pendiente'" (click)="rejectReserve(reserve, i)">Rechazar</button>
                     <div [ngClass]="{'active': (reserve.estado == 'Confirmado' || reserve.estado == 'Proceso'), 'pending': reserve.estado == 'Pendiente' }" ng-show="false">
                         <span>{{reserve.estado}}</span>
                     </div>
