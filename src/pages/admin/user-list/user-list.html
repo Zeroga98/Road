@@ -17,7 +17,7 @@
                 <ion-option *ngFor="let rol of rols" value="{{rol.nombre}}">{{rol.nombre}}</ion-option>
             </ion-select>
         </ion-item>
-        <section *ngIf="users">
+        <section *ngIf="users != undefined && users">
             <ion-card *ngFor="let user of users">
                 <div class="state-user">
                     <ion-note *ngIf="user.estado == 0" (click)="changeStateUser(user)">
@@ -41,5 +41,18 @@
                 </ion-item>
             </ion-card>
         </section>
+        <div class="wrap" *ngIf="users != undefined && users.length == 0">
+            <div class="content-img">
+                <img src="./assets/not_data.svg" />
+            </div>
+            <div class="text-wrap">
+                <span class="title">
+            Problemas de conexión
+          </span>
+                <span class="subtitle">
+            Procura mejorar tu conexión a internet
+          </span>
+            </div>
+        </div>
     </ion-list>
 </ion-content>

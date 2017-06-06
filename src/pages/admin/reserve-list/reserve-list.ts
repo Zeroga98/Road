@@ -45,7 +45,9 @@ export class ReserveListPage {
           for (var i = 0; i < data.length; ++i) {
             this.reserves.push(data[i]);
           }
-        } else if(data != undefined && data.length < this.limit1){
+        }
+
+        if(data != undefined && data.length < this.limit1){
           this.full1 = true;
         }
         this.offset1 += this.limit1;
@@ -70,7 +72,9 @@ export class ReserveListPage {
           for (var i = 0; i < data.length; ++i) {
             this.historys.push(data[i]);
           }
-        } else if(data != undefined && data.length < this.limit2){
+        } 
+
+        if(data != undefined && data.length < this.limit2){
           this.full2 = true;
         }
         this.offset2 += this.limit2;
