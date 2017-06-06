@@ -1,17 +1,17 @@
 page-myreservations {
-
+    .swiper-slide {
+        overflow-y: scroll;
+        display: block;
+    }
     ion-card.cards-list-demo ion-item-divider {
         color: map-get($colors, primary);
     }
-
     .active-tab {
         border-bottom: 2px solid white;
     }
-
     .align-right {
         text-align: right;
     }
-
     .scroll-content {
         position: absolute;
         top: 0;
@@ -25,9 +25,7 @@ page-myreservations {
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;
-        
     }
-
     .pagemainclass {
         .slide-zoom {
             position: absolute;
@@ -40,7 +38,6 @@ page-myreservations {
             height: 95%;
         }
     }
-
     .tabs {
         position: absolute;
         height: 4em;
@@ -61,11 +58,10 @@ page-myreservations {
             width: 49%;
         }
     }
-    
     .content_back {
         background-color: #e9edf1;
     }
-/*------------------------------------*\
+    /*------------------------------------*\
     $MY-RESERVE
 \*------------------------------------*/
     .my-reserve {
@@ -100,7 +96,6 @@ page-myreservations {
             font-weight: 500;
             border-right: 4px solid #55cf7d;
         }
-
         .rejected {
             position: absolute;
             right: 0px;
@@ -112,7 +107,6 @@ page-myreservations {
             font-weight: 500;
             border-right: 4px solid crimson;
         }
-
         .pending {
             position: absolute;
             right: 0px;
@@ -133,7 +127,7 @@ page-myreservations {
                 vertical-align: middle;
                 display: inline-block;
                 width: 48%;
-                img{
+                img {
                     border-radius: 10px;
                 }
             }
@@ -148,17 +142,17 @@ page-myreservations {
                         font-size: 13px
                     }
                 }
-                ion-item{
+                ion-item {
                     font-size: 10px;
-                    ion-icon{
+                    ion-icon {
                         font-size: 18px;
                         margin: 0;
                         padding: 0;
                     }
-                    p{
-                        font-size:10px;
+                    p {
+                        font-size: 10px;
                     }
-                    .item-inner{
+                    .item-inner {
                         margin: 0;
                     }
                 }
