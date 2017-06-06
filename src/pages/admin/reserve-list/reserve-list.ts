@@ -88,6 +88,26 @@ export class ReserveListPage {
       });
   }
 
+  public rejectReserve(reserve: any, index: number){
+    this.util.loading();
+    this.userService.rejectReserve({ id: reserve.alquiler_id, description: "Rechazado porque si" }).subscribe(
+      data => {
+        if(data != undefined && data[0].status){
+          reserve.estado = "Rechazado";
+          this.reserves.splice(index, 1);
+          this.historys.push(reserve);
+        } else {
+          this.util.presentToast("Ocurrio un problema al rechazar la reserva");
+        }
+        this.util.loadingDismiss();
+      },
+      error => {
+        this.util.loadingDismiss();
+        console.log(error);
+      }
+    );
+  }
+
   public goToDetail(reserve: string) {
     this.nav.push(ReserveDetailPage, { reserve: reserve })
   }

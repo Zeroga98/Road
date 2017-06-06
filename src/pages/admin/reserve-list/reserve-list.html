@@ -12,12 +12,13 @@
 <ion-content class="content_back">
     <ion-slides class="pagemainclass" zoom="false" (ionSlideDidChange)="slideChanged($event)">
         <ion-slide>
-            <div class="my-reserve" *ngFor="let reserve of reserves" [hidden]="reserves == undefined || reserves.length == 0">
+            <div class="my-reserve" *ngFor="let reserve of reserves; let i = index" [hidden]="reserves == undefined || reserves.length == 0">
                 <div class="my-reserve__header">
                     <div class="text">
                         <span class="name">{{reserve.marca_nombre}} {{reserve.auto_nombre}}</span>
                         <span class="model">{{reserve.vehiculo_modelo}}</span>
                     </div>
+                    <button ion-button item-left *ngIf="reserve.estado == 'Pendiente'" (click)="rejectReserve(reserve, i)">Rechazar</button>
                     <div [ngClass]="{'active': (reserve.estado == 'Confirmado' || reserve.estado == 'Proceso'), 'pending': reserve.estado == 'Pendiente' }" ng-show="false">
                         <span>{{reserve.estado}}</span>
                     </div>
