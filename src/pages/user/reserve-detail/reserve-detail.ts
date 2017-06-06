@@ -14,6 +14,7 @@ export class ReserveDetailPage {
       public navParams: NavParams
   ) {
   	this.reserve = this.navParams.get('reserve'); 
+    console.log(this.reserve);
   }
 
 }

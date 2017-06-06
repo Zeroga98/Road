@@ -10,6 +10,14 @@ export class UserService {
   constructor(public apiService: ApiService) {
   }
 
+  public rejectReserve(data: any){
+    return this.apiService.post('/reserve/reject', data)
+      .map(
+      data => {
+        return data;
+      });
+  }
+
   public getProfile() {
     return this.apiService.get('/user/get-profile')
       .map(
