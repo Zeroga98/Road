@@ -10,9 +10,8 @@
         <button *ngIf="!isAuthenticated" class="wdth-47 btn--rad0" (click)="SignUp()" menuClose ion-button color="light" clear>Crea una cuenta
         </button>
         <ion-item *ngIf="isAuthenticated">
-            <ion-avatar item-left>
-                <!--<img [src]="currentUser?.image"/>-->
-                <img src="http://visualoop.com/wp-content/themes/visualoop/img/there-is-no-picture-for-this-user2.png" />
+            <ion-avatar item-left> 
+                <img src="{{currentUser?.foto}}"/>
             </ion-avatar>
             <h2 class="title">{{currentUser?.name}}</h2>
             <p class="subtitle">{{currentUser?.email}}</p>

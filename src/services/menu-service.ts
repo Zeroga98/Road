@@ -77,6 +77,7 @@ export class MenuService {
     this.pages.push({ title: 'Lista de usuarios', component: UserListPage, icon: 'contacts', access: 'admin' });
     this.pages.push({ title: 'Lista de reservas', component: ReserveListPage, icon: 'md-bookmarks', access: 'admin' });
     this.pages.push({ title: 'Crear usuario', component: RegisterUserPage, icon: 'ios-contacts-outline', access: 'admin' });
+    this.pages.push({ title: 'Contratos', component: CutoffDatePage, icon: 'ios-podium-outline', access: 'admin' });
   }
 
   private rolProvider() {

@@ -58,7 +58,6 @@ export class Road {
   private getUserProfile(){
     this.userService.getUser().subscribe(
         data => {
-          console.log(data);
           if(data != undefined && data[0].status != 'ERROR'){
             this.menuService.configMenu(data[0].rol_nombre);
             this.currentUser.id = data[0].id;

@@ -15,8 +15,12 @@ export class ReserveListPage {
   public index: number = 0;
   public reserves: any = undefined;
   public historys: any = undefined;
-  public limit: number = 2;
-  public offset: number = 0;
+  public full1: boolean = false;
+  public limit1: number = 5;
+  public offset1: number = 0;
+  public full2: boolean = false;
+  public limit2: number = 5;
+  public offset2: number = 0;
 
   constructor(
     public nav: NavController,
@@ -27,24 +31,54 @@ export class ReserveListPage {
 
   ionViewDidLoad() {
     this.getAllReserves();
+    this.getAllReservesHistory();
   }
 
-  private getAllReserves(){
+  public getAllReserves(){
     this.util.loading();
-    this.userService.getAllReserve({ states: '123', limit: this.limit.toString(), offset: this.offset.toString() })
+    this.userService.getAllReserve({ states: '123', limit: this.limit1.toString(), offset: this.offset1.toString() })
     .subscribe(data => {
-        if(this.offset == 0){
+        if(this.offset1 == 0){
           this.reserves = [];
         }
-        if (data != undefined) {
-          this.reserves = data;
+        if (data != undefined && data.length > 0) {
+          for (var i = 0; i < data.length; ++i) {
+            this.reserves.push(data[i]);
+          }
+        } else if(data != undefined && data.length < this.limit1){
+          this.full1 = true;
         }
-        this.offset += this.limit;
+        this.offset1 += this.limit1;
         console.log(this.reserves);
         this.util.loadingDismiss();
       },
       error => {
         this.reserves = [];
+        this.util.loadingDismiss();
+        console.log(error);
+      });
+  }
+
+  public getAllReservesHistory(){
+    this.util.loading();
+    this.userService.getAllReserve({ states: '45', limit: this.limit2.toString(), offset: this.offset2.toString() })
+    .subscribe(data => {
+        if(this.offset2 == 0){
+          this.historys = [];
+        }
+        if (data != undefined && data.length > 0) {
+          for (var i = 0; i < data.length; ++i) {
+            this.historys.push(data[i]);
+          }
+        } else if(data != undefined && data.length < this.limit2){
+          this.full2 = true;
+        }
+        this.offset2 += this.limit2;
+        console.log(this.historys);
+        this.util.loadingDismiss();
+      },
+      error => {
+        this.historys = [];
         this.util.loadingDismiss();
         console.log(error);
       });

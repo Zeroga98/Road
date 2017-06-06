@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { UserService } from '../../../services/user-service';
 import { UtilProvider } from '../../../providers/util-provider';
+import { AuthService } from '../../../services/auth-service'
 
 @Component({
 	selector: 'page-user-list',
@@ -10,6 +11,7 @@ import { UtilProvider } from '../../../providers/util-provider';
 })
 export class UserListPage {
 
+	public currentUser: any = undefined;
 	public users: any = undefined;
 	public users_copy: any = undefined;
 	public rols: any = undefined;
@@ -18,12 +20,17 @@ export class UserListPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private util: UtilProvider,
-		private userService: UserService
+		private userService: UserService,
+		private authService: AuthService
 	) { }
 
 	ionViewDidLoad() {
 		this.getListUsers();
 		this.getAllRols();
+
+		this.authService.currentUser.subscribe((userData) => {
+			this.currentUser = userData;
+		});
 	}
 
 	private getListUsers() {
@@ -52,10 +59,10 @@ export class UserListPage {
 			});
 	}
 
-	private getAllRols(){
+	private getAllRols() {
 		this.util.loading();
 		this.userService.getAllRols()
-		.subscribe(data => {
+			.subscribe(data => {
 				this.rols = [];
 				if (data != undefined) {
 					this.rols = data;
@@ -73,12 +80,65 @@ export class UserListPage {
 			});
 	}
 
-	private changeStateUser(user: any){
+	private changeStateUser(user: any) {
+		if (this.currentUser.rol_nombre.indexOf("admin") != -1) {
+			this.util.loading();
+			this.userService.changeStateUser({ email: user.email, estado: (user.estado == 1) ? 0 : 1 })
+				.subscribe(data => {
+					if (data[0].status == 'OK') {
+						user.estado = (user.estado == 1) ? 0 : 1;
+					} else {
+						this.util.presentToast("Ocurrió un problema al cambiar el estado, intentelo más tarde");
+					}
+					this.util.loadingDismiss();
+				},
+				error => {
+					this.util.loadingDismiss();
+					console.log(error);
+				});
+		}
+	}
+
+	public SelectedRol(user: any) {
+		if (this.currentUser.rol_nombre.indexOf("admin") != -1) {
+			let data = [];
+			for (var i = 0; i < this.rols.length; ++i) {
+				data.push({ label: this.rols[i].nombre, check: this.findByRol(user.rols, this.rols[i].nombre) != -1 });
+			}
+			this.util.alertCheckbox(data, (data => {
+				this.changeRolsUser(user, data);
+			}));
+		}
+	}
+
+	private changeRolsUser(user: any, checks: any) {
+		let request = { client: '0', admin: '0', employee: '0', provider: '0', user_email: user.email };
+		let new_rols = [];
+		let new_rol_string = "";
+		for (var i = 0; i < checks.length; ++i) {
+			if (checks[i] == 'Cliente') {
+				request.client = '1';
+				new_rol_string += 'cliente,';
+			} else if (checks[i] == 'Proveedor') {
+				request.provider = '1';
+				new_rol_string += 'proveedor,';
+			} else if (checks[i] == 'Admin') {
+				request.admin = '1';
+				new_rol_string += 'admin,';
+			} else if (checks[i] == 'Empleado') {
+				request.employee = '1';
+				new_rol_string += 'empleado,';
+			}
+			new_rols.push(checks[i]);
+		}
+		new_rol_string = new_rol_string.substring(0, new_rol_string.length - 1);
+
 		this.util.loading();
-		this.userService.changeStateUser({ email: user.email, estado: (user.estado == 1)? 0 : 1 })
-		.subscribe(data => {
-				if(data[0].status == 'OK'){
-					user.estado = (user.estado == 1)? 0 : 1;
+		this.userService.changeRolsUser(request)
+			.subscribe(data => {
+				if (data[0].status == 'OK') {
+					user.roles = new_rol_string;
+					user.rols = new_rols;
 				} else {
 					this.util.presentToast("Ocurrió un problema al cambiar el estado, intentelo más tarde");
 				}
@@ -90,74 +150,25 @@ export class UserListPage {
 			});
 	}
 
-	public SelectedRol(user: any){
-		let data = [];
-		for (var i = 0; i < this.rols.length; ++i) {
-			data.push({ label: this.rols[i].nombre, check: this.findByRol(user.rols, this.rols[i].nombre) != -1 });
-		}
-		this.util.alertCheckbox(data, (data => {
-			this.changeRolsUser(user, data);
-		}));
-	}
-
-	private changeRolsUser(user: any, checks: any){
-		let request = {client: '0', admin: '0', employee: '0', provider: '0', user_email: user.email};
-		let new_rols = [];
-		let new_rol_string = "";
-		for (var i = 0; i < checks.length; ++i) {
-			if(checks[i] == 'Cliente'){
-				request.client = '1';
-				new_rol_string += 'cliente,';
-			} else if(checks[i] == 'Proveedor'){
-				request.provider = '1';
-				new_rol_string += 'proveedor,';
-			} else if(checks[i] == 'Admin'){
-				request.admin = '1';
-				new_rol_string += 'admin,';
-			} else if(checks[i] == 'Empleado'){
-				request.employee = '1';
-				new_rol_string += 'empleado,';
-			}
-			new_rols.push(checks[i]);
-		}
-		new_rol_string = new_rol_string.substring(0, new_rol_string.length - 1);
-
-		this.util.loading();
-		this.userService.changeRolsUser(request)
-		.subscribe(data => {
-			if(data[0].status == 'OK'){
-				user.roles = new_rol_string;
-				user.rols = new_rols;
-			} else {
-				this.util.presentToast("Ocurrió un problema al cambiar el estado, intentelo más tarde");
-			}
-			this.util.loadingDismiss();
-		},
-		error => {
-			this.util.loadingDismiss();
-			console.log(error);
-		});
-	}
-
-	private findByRol(array: any, rol: string){
+	private findByRol(array: any, rol: string) {
 		for (var i = 0; i < array.length; ++i) {
-			if(array[i] == rol){
+			if (array[i] == rol) {
 				return i;
 			}
 		}
 		return -1;
 	}
-	
+
 	public onInput(event: any) {
 		this.users = this.users_copy;
-		if(event != 'all'){
+		if (event != 'all') {
 			this.users = this.users_copy;
-	    	let val = event;
-		    if (val && val.trim() != '') {
-		      this.users = this.users.filter((item) => {
-		        return item.roles.toLowerCase().indexOf(val.toLowerCase()) > -1;
-		      })
-	    	}
+			let val = event;
+			if (val && val.trim() != '') {
+				this.users = this.users.filter((item) => {
+					return item.roles.toLowerCase().indexOf(val.toLowerCase()) > -1;
+				})
+			}
 		}
-  	}
+	}
 }
